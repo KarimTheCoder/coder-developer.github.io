@@ -3,42 +3,387 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name | Android Developer</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Samsul Karim | Software Developer & UI/UX Architect</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Base styles for the dark theme */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #191919;
+            color: #f0f0f0;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Heading font */
+        .font-serif-heading {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        
+        /* Fixed navigation bar with blur effect */
+        .fixed-nav {
+            backdrop-filter: blur(8px);
+            background-color: rgba(25, 25, 25, 0.6);
+            transition: background-color 0.3s ease-in-out;
+        }
+        
+        /* Navigation link styling */
+        .nav-link {
+            position: relative;
+            transition: color 0.2s ease-in-out;
+            padding-bottom: 5px; /* Space for the underline */
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ffcc00;
+            transition: width 0.3s ease-in-out;
+        }
+        .nav-link.active::after,
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        .nav-link.active,
+        .nav-link:hover {
+            color: #ffcc00;
+        }
+
+        /* Scroll-to-reveal animation */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+        .animate-on-scroll.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Horizontal scroll container for projects */
+        .horizontal-scroll-container {
+            overflow-x: scroll;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none; /* Firefox */
+            -ms-overflow-style: none;  /* IE and Edge */
+        }
+        .horizontal-scroll-container::-webkit-scrollbar {
+            display: none; /* Chrome, Safari, Opera */
+        }
+
+        /* Project card styling */
+        .project-card {
+            flex-shrink: 0;
+            width: 320px; /* Fixed width for horizontal scroll */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            background-color: #212121;
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Modal styling */
+        .modal-overlay {
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+        }
+        .modal-content {
+            background-color: #212121;
+        }
+    </style>
 </head>
-<body>
-    <header>
-        <h1>[Your Name]</h1>
-        <h2>Independent Android Developer & UI/UX Enthusiast</h2>
-        <p>I build intuitive and beautiful user interfaces using Kotlin and Jetpack Compose.</p>
+<body class="min-h-screen">
+
+    <nav id="main-nav" class="fixed-nav w-full py-4 px-8 top-0 z-1000 shadow-lg">
+        <div class="max-w-7xl mx-auto flex justify-center space-x-6 sm:space-x-12 text-lg sm:text-xl font-medium">
+            <a href="#about" class="nav-link text-gray-300">About</a>
+            <a href="#projects" class="nav-link text-gray-300">Projects</a>
+            <a href="#journal" class="nav-link text-gray-300">Journal</a>
+            <a href="#contact" class="nav-link text-gray-300">Contact</a>
+        </div>
+    </nav>
+
+    <header class="h-screen w-full flex flex-col items-center justify-center text-center p-8 relative overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center opacity-5" style="background-image: url('https://placehold.co/1920x1080/1a1a1a/ffcc00/png?text=Creative+Background');"></div>
+        <div class="relative z-10 max-w-4xl mx-auto animate-on-scroll">
+            <p class="text-2xl sm:text-3xl text-gray-400 mb-4 tracking-wider">Independent Software Developer</p>
+            <h1 class="text-6xl sm:text-9xl font-extrabold text-white font-serif-heading leading-tight mb-8 tracking-tighter">
+                Samsul Karim
+            </h1>
+        </div>
+        <div class="absolute bottom-10 animate-pulse">
+            <a href="#about" class="text-gray-500 hover:text-white transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+            </a>
+        </div>
     </header>
 
-    <main>
-        <section id="projects">
-            <h2>Featured Projects</h2>
-            <div class="project-card">
-                <h3>App Name 1</h3>
-                <img src="path/to/screenshot1.png" alt="Screenshot of App 1">
-                <p>A brief description of App 1, highlighting the technologies used (e.g., Kotlin, Composables) and its purpose.</p>
-                <a href="link-to-play-store" target="_blank">View on Play Store</a>
-                <a href="link-to-github-repo" target="_blank">View on GitHub</a>
+    <main class="w-full">
+
+        <section id="about" class="max-w-7xl mx-auto py-24 px-8 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div class="animate-on-scroll">
+                <img src="https://placehold.co/600x600/ffcc00/191919/png?text=Your+Photo" alt="Samsul Karim Profile" class="w-full max-w-sm mx-auto md:max-w-full rounded-lg shadow-xl">
             </div>
-            </section>
+            <div class="animate-on-scroll">
+                <h2 class="text-6xl font-bold text-white font-serif-heading mb-8">About</h2>
+                <div class="text-gray-300 leading-relaxed text-lg space-y-6">
+                    <p>Hello! I'm Samsul Karim, a passionate independent software developer with a strong focus on creating impactful mobile applications. My expertise spans core development in Java and Kotlin, including modern Android frameworks like Jetpack Compose.</p>
+                    <p>What sets my work apart is a deep commitment to user experience. I bring a robust UI/UX design background, proficient in tools such as Adobe Photoshop, Adobe XD, and Figma. This allows me to not only build robust applications but also to design interfaces that are inherently intuitive, aesthetically pleasing, and genuinely enjoyable to interact with.</p>
+                    <p>I thrive on turning complex ideas into elegant, user-centric solutions, consistently seeking to refine my craft and contribute innovative applications to the digital landscape.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="projects" class="max-w-7xl mx-auto py-24 px-8">
+            <div class="animate-on-scroll mb-16">
+                <h2 class="text-6xl font-bold text-white font-serif-heading mb-4">Selected Work</h2>
+                <p class="text-gray-400 text-xl max-w-2xl">A curated collection of my independent projects, showcasing my skills in development and design.</p>
+            </div>
+            <div class="horizontal-scroll-container pb-8">
+                <div class="flex space-x-10 pl-2">
+                    <div class="project-card relative p-7 rounded-xl shadow-lg border border-transparent hover:border-[#ffcc00]" data-project-id="english-teacher">
+                        <img src="https://placehold.co/600x400/ffcc00/191919/png?text=Project+1" alt="English Teacher App Screenshot" class="rounded-lg mb-5 w-full h-auto object-cover max-h-56">
+                        <h3 class="text-2xl font-semibold text-white mb-3">English Language Matrix</h3>
+                        <p class="text-gray-400 mb-5 leading-relaxed text-base">An advanced Android application engineered for language acquisition through dynamic lessons and real-time pronunciation analysis.</p>
+                        <div class="flex flex-wrap gap-2 text-sm text-gray-400">
+                            <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Kotlin</span>
+                            <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Jetpack Compose</span>
+                            <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">UI/UX Design</span>
+                        </div>
+                    </div>
+                    
+                    <div class="project-card relative p-7 rounded-xl shadow-lg border border-transparent hover:border-[#ffcc00]" data-project-id="spelling-app">
+                        <img src="https://placehold.co/600x400/ffcc00/191919/png?text=Project+2" alt="Spelling App Screenshot" class="rounded-lg mb-5 w-full h-auto object-cover max-h-56">
+                        <h3 class="text-2xl font-semibold text-white mb-3">Orthography Synthesizer</h3>
+                        <p class="text-gray-400 mb-5 leading-relaxed text-base">A gamified Android application designed to master spelling precision via multi-modal challenges and adaptive difficulty.</p>
+                        <div class="flex flex-wrap gap-2 text-sm text-gray-400">
+                            <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Java</span>
+                            <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Android SDK</span>
+                            <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Gamification</span>
+                        </div>
+                    </div>
 
-        <section id="about">
-            <h2>About Me</h2>
-            <p>Tell your story here. Talk about your passion for coding, your skills (Java, Kotlin, Composables, Figma), and your goals.</p>
+                    <div class="project-card relative p-7 rounded-xl shadow-lg border border-transparent hover:border-[#ffcc00]" data-project-id="project-three">
+                        <img src="https://placehold.co/600x400/ffcc00/191919/png?text=Project+3" alt="Project Three Screenshot" class="rounded-lg mb-5 w-full h-auto object-cover max-h-56">
+                        <h3 class="text-2xl font-semibold text-white mb-3">Innovative Solution X</h3>
+                        <p class="text-gray-400 mb-5 leading-relaxed text-base">A brief description of another project showcasing your diverse skills and problem-solving abilities.</p>
+                        <div class="flex flex-wrap gap-2 text-sm text-gray-400">
+                            <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Technology A</span>
+                            <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Technology B</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card relative p-7 rounded-xl shadow-lg border border-transparent hover:border-[#ffcc00]" data-project-id="project-four">
+                        <img src="https://placehold.co/600x400/ffcc00/191919/png?text=Project+4" alt="Project Four Screenshot" class="rounded-lg mb-5 w-full h-auto object-cover max-h-56">
+                        <h3 class="text-2xl font-semibold text-white mb-3">Personal Dashboard App</h3>
+                        <p class="text-gray-400 mb-5 leading-relaxed text-base">An application designed to help users track personal goals, finances, and habits with a clean, intuitive interface.</p>
+                        <div class="flex flex-wrap gap-2 text-sm text-gray-400">
+                            <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Kotlin</span>
+                            <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Firebase</span>
+                            <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Jetpack Compose</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <section id="contact">
-            <h2>Get in Touch</h2>
-            <p>Email: your.email@example.com</p>
-            <p>LinkedIn: <a href="your-linkedin-profile">Your LinkedIn Profile</a></p>
+        <section id="journal" class="max-w-7xl mx-auto py-24 px-8 animate-on-scroll">
+            <h2 class="text-6xl font-bold text-white font-serif-heading mb-8 text-center">Journal</h2>
+            <div class="text-gray-300 leading-relaxed text-lg max-w-3xl mx-auto text-center space-y-6">
+                <p>This section is dedicated to my insights, technical deep-dives, and reflections on the latest in mobile development and UI/UX design. Stay tuned for articles on Kotlin best practices, Jetpack Compose tutorials, design principles, and more!</p>
+                <p class="text-[#ffcc00] font-semibold mt-6">Content coming soon...</p>
+            </div>
         </section>
+
+        <section id="contact" class="max-w-7xl mx-auto py-24 px-8 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+            <div class="animate-on-scroll">
+                <h2 class="text-6xl font-bold text-white font-serif-heading mb-8">Contact</h2>
+                <div class="text-gray-300 leading-relaxed text-lg space-y-6">
+                    <p>I am always open to new opportunities and collaborations. Whether you have a project idea, a question, or just want to connect, feel free to reach out. I'll get back to you as soon as possible.</p>
+                    <div class="space-y-3">
+                        <p><span class="font-semibold text-white">Email:</span> your.email@example.com</p>
+                        <p><span class="font-semibold text-white">LinkedIn:</span> linkedin.com/in/yourprofile</p>
+                        <p><span class="font-semibold text-white">GitHub:</span> github.com/KarimTheCoder</p>
+                    </div>
+                    <div class="flex space-x-6 text-3xl pt-4">
+                        <a href="https://github.com/KarimTheCoder" target="_blank" class="text-gray-400 hover:text-[#ffcc00] transition-colors duration-200"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/yourprofile" target="_blank" class="text-gray-400 hover:text-[#ffcc00] transition-colors duration-200"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-[#ffcc00] transition-colors duration-200"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-[#ffcc00] transition-colors duration-200"><i class="fab fa-dribbble"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="animate-on-scroll">
+                <div class="bg-gray-900 p-10 rounded-xl shadow-2xl">
+                    <form class="space-y-6">
+                        <div>
+                            <label for="name" class="block text-gray-300 text-lg font-medium mb-2">Name</label>
+                            <input type="text" id="name" name="name" class="w-full p-4 rounded-md bg-gray-800 border-none focus:outline-none focus:ring-2 focus:ring-[#ffcc00] text-white" placeholder="Your Name">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-gray-300 text-lg font-medium mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full p-4 rounded-md bg-gray-800 border-none focus:outline-none focus:ring-2 focus:ring-[#ffcc00] text-white" placeholder="your.email@example.com">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-300 text-lg font-medium mb-2">Message</label>
+                            <textarea id="message" name="message" rows="6" class="w-full p-4 rounded-md bg-gray-800 border-none focus:outline-none focus:ring-2 focus:ring-[#ffcc00] text-white" placeholder="Your message..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-[#ffcc00] text-gray-900 py-4 rounded-md font-bold text-lg hover:bg-yellow-500 transition duration-200 shadow-lg">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
     </main>
 
-    <footer>
-        <p>&copy; 2024 Your Name. All rights reserved.</p>
+    <footer class="w-full py-10 text-center text-gray-600 text-sm">
+        &copy; 2025 Samsul Karim. All rights reserved.
     </footer>
+
+    <div id="projectModal" class="fixed inset-0 flex items-center justify-center p-4 modal-overlay hidden">
+        <div class="modal-content rounded-xl shadow-2xl max-w-4xl w-full p-8 relative max-h-[90vh] overflow-y-auto">
+            <button class="absolute top-5 right-5 text-gray-400 hover:text-white text-4xl font-bold transition duration-200" onclick="closeModal()">&times;</button>
+            <h3 id="modalProjectTitle" class="text-4xl font-bold font-serif-heading text-white mb-4"></h3>
+            <img id="modalProjectImage" src="" alt="Project Image" class="rounded-lg mb-5 w-full h-auto object-cover max-h-80 border border-gray-700">
+            <p id="modalProjectDescription" class="text-gray-300 leading-relaxed mb-5 text-lg"></p>
+            <div id="modalProjectTech" class="flex flex-wrap gap-3 text-sm text-gray-400 mb-6"></div>
+            <div class="flex flex-col sm:flex-row gap-4 mt-6">
+                <a id="modalPlayStoreLink" href="#" target="_blank" class="bg-[#ffcc00] text-gray-900 px-7 py-3.5 rounded-md font-semibold text-lg hover:bg-yellow-500 transition duration-200 shadow-md flex items-center justify-center">
+                    View on Play Store
+                </a>
+                <a id="modalGitHubLink" href="#" target="_blank" class="bg-gray-800 text-white px-7 py-3.5 rounded-md font-semibold text-lg hover:bg-gray-700 transition duration-200 shadow-md flex items-center justify-center">
+                    View on GitHub
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data for your projects
+        const projectsData = {
+            "english-teacher": {
+                title: "English Language Matrix",
+                image: "https://placehold.co/600x400/ffcc00/191919/png?text=Project+1+Detail",
+                description: "This application is designed to make learning English engaging and accessible. It features interactive lessons, pronunciation exercises, and quizzes tailored to different proficiency levels. My focus was on creating a clean, intuitive interface using Jetpack Compose to ensure a smooth and enjoyable user experience. The app also tracks user progress and provides personalized feedback to enhance learning.",
+                tech: ["Kotlin", "Jetpack Compose", "MVVM Architecture", "Room Database", "UI/UX Design", "Material Design"],
+                playStoreLink: "https://play.google.com/store/apps/details?id=your.english.app.id",
+                githubLink: "https://github.com/KarimTheCoder/english-teacher-app"
+            },
+            "spelling-app": {
+                title: "Orthography Synthesizer",
+                image: "https://placehold.co/600x400/ffcc00/191919/png?text=Project+2+Detail",
+                description: "A fun and educational mobile game designed to help users improve their spelling skills. It includes multiple difficulty levels, various word categories, and real-time feedback. I built this using Java and custom Android views, optimizing performance and ensuring a highly responsive interface. The design emphasizes gamification to keep learners motivated.",
+                tech: ["Java", "Android SDK", "Custom Views", "Audio Playback", "Gamification", "UI/UX Principles"],
+                playStoreLink: "https://play.google.com/store/apps/details?id=your.spelling.app.id",
+                githubLink: "https://github.com/KarimTheCoder/spelling-app"
+            },
+            "project-three": {
+                title: "Project Three: Innovative Solution X",
+                image: "https://placehold.co/600x400/ffcc00/191919/png?text=Project+3+Detail",
+                description: "This is a placeholder description for another one of your projects. Detail its purpose, the challenges you faced, your technical solutions, and the impact it had. Highlight any unique features or technologies used.",
+                tech: ["Technology A", "Technology B", "Framework C", "Concept D"],
+                playStoreLink: "#",
+                githubLink: "#"
+            },
+            "project-four": {
+                title: "Project Four: Personal Dashboard App",
+                image: "https://placehold.co/600x400/ffcc00/191919/png?text=Project+4+Detail",
+                description: "An application designed to help users track personal goals, finances, and habits with a clean, intuitive interface. I focused on user-centered design and a seamless data synchronization process.",
+                tech: ["Kotlin", "Firebase", "Jetpack Compose", "Data Syncing", "UI/UX"],
+                playStoreLink: "#",
+                githubLink: "#"
+            }
+        };
+
+        // Modal functionality
+        const projectCards = document.querySelectorAll('.project-card');
+        const projectModal = document.getElementById('projectModal');
+        function openModal(projectId) {
+            const project = projectsData[projectId];
+            if (project) {
+                document.getElementById('modalProjectTitle').textContent = project.title;
+                document.getElementById('modalProjectImage').src = project.image;
+                document.getElementById('modalProjectDescription').textContent = project.description;
+                const techContainer = document.getElementById('modalProjectTech');
+                techContainer.innerHTML = '';
+                project.tech.forEach(tag => {
+                    const span = document.createElement('span');
+                    span.className = 'bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700';
+                    span.textContent = tag;
+                    techContainer.appendChild(span);
+                });
+                document.getElementById('modalPlayStoreLink').href = project.playStoreLink;
+                document.getElementById('modalGitHubLink').href = project.githubLink;
+                projectModal.classList.remove('hidden');
+            }
+        }
+        function closeModal() {
+            projectModal.classList.add('hidden');
+        }
+        projectCards.forEach(card => card.addEventListener('click', () => openModal(card.dataset.projectId)));
+        projectModal.addEventListener('click', (e) => {
+            if (e.target === projectModal) closeModal();
+        });
+
+        // Scroll animation logic
+        const sections = document.querySelectorAll('section');
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.animate-on-scroll').forEach(el => {
+                        el.classList.add('in-view');
+                    });
+                }
+            });
+        }, observerOptions);
+        sections.forEach(section => {
+            section.querySelectorAll('.animate-on-scroll').forEach(el => el.classList.add('animate-on-scroll'));
+            observer.observe(section);
+        });
+
+        // Navigation active state on scroll
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const currentSectionId = entry.target.id;
+                    navLinks.forEach(link => {
+                        link.classList.remove('active');
+                        if (link.getAttribute('href').substring(1) === currentSectionId) {
+                            link.classList.add('active');
+                        }
+                    });
+                }
+            });
+        }, { rootMargin: '-50% 0px -50% 0px' }); // This threshold activates link in the middle of the viewport
+        sections.forEach(section => sectionObserver.observe(section));
+
+        // Smooth scroll for nav links (overrides default smooth-scroll)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
