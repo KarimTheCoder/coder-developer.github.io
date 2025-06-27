@@ -230,10 +230,10 @@
             font-weight: 500;
         }
 
-        /* Specific positioning for OS elements (adjusted to be closer to center) */
+        /* Specific positioning for OS elements (adjusted to be spaced out more centrally) */
         .os-element-android {
             top: 20%;
-            left: 15%;
+            left: 25%;
             animation-delay: 0s;
             animation-duration: 22s;
             width: 180px;
@@ -241,7 +241,7 @@
         }
         .os-element-wearos {
             bottom: 20%;
-            right: 15%;
+            right: 25%;
             animation-delay: 3s;
             animation-duration: 25s;
             width: 180px;
@@ -249,7 +249,7 @@
         }
         .os-element-android-dev {
             top: 40%;
-            left: 5%;
+            left: 10%;
             animation-delay: 6s;
             animation-duration: 20s;
             width: 220px;
@@ -257,8 +257,8 @@
             padding: 1.2rem 1.8rem;
         }
         .os-element-designer {
-            top: 5%;
-            right: 5%;
+            top: 10%;
+            right: 10%;
             animation-delay: 9s;
             animation-duration: 23s;
             width: 220px;
@@ -266,18 +266,19 @@
             padding: 1.2rem 1.8rem;
         }
         .os-element-ai-expert {
-            bottom: 5%;
-            left: 20%;
+            bottom: 10%;
+            left: 10%;
             animation-delay: 12s;
             animation-duration: 24s;
             width: 200px;
             height: auto;
             padding: 1.2rem 1.8rem;
         }
+        /* Software Architecture (Centerpiece) */
         .os-element-software-arch {
-            top: 10%;
+            top: 50%;
             left: 50%;
-            transform: translateX(-50%); /* Keep centered for this one */
+            transform: translate(-50%, -50%); /* Fully centered */
             animation-delay: 15s;
             animation-duration: 21s;
             width: 220px;
@@ -286,9 +287,9 @@
         }
         .os-element-programming-langs {
             bottom: 10%;
-            right: 5%;
-            animation-delay: 18s; /* New delay */
-            animation-duration: 26s; /* New duration */
+            right: 10%;
+            animation-delay: 18s;
+            animation-duration: 26s;
             width: 220px;
             height: auto;
             padding: 1.2rem 1.8rem;
@@ -346,9 +347,9 @@
                 width: 160px;
             }
             .os-element-software-arch {
-                top: 5%;
+                top: 50%; /* Center vertically */
                 left: 50%;
-                transform: translateX(-50%);
+                transform: translateX(-50%); /* Center horizontally */
                 width: 180px;
             }
             .os-element-programming-langs {
