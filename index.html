@@ -199,11 +199,19 @@
             box-shadow: 0 0 15px rgba(0, 230, 118, 0.2); /* Soft shadow */
             padding: 1.5rem 2rem; /* Generous padding */
             z-index: 50; /* Below main text, above background image */
-            transition: transform 0.1s ease-out; /* Quick response to mouse */
+            transition: transform 0.1s ease-out, box-shadow 0.3s ease-in-out; /* Added box-shadow transition */
             animation: floatOS 20s infinite ease-in-out alternate; /* Gentle floating animation */
             will-change: transform;
             text-align: center; /* Center text within element */
         }
+
+        /* New hover effect for OS elements */
+        .os-element:hover {
+            transform: scale(1.05); /* Slightly enlarge on hover */
+            box-shadow: 0 0 25px rgba(0, 230, 118, 0.6), 0 0 40px rgba(0, 230, 118, 0.3); /* Stronger glow on hover */
+            cursor: pointer; /* Indicate interactivity */
+        }
+
 
         .os-element .icon {
             font-size: 2.5rem; /* Icon size */
