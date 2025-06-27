@@ -4,49 +4,53 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Samsul Karim | Software Developer & UI/UX Architect</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Inter for a modern sans-serif feel -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome for social icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
+        /* Define accent color as a CSS variable for easy changes */
+        :root {
+            --accent-color: #00E676; /* Vibrant electric green/cyan */
+        }
+
         /* Base styles for the dark theme */
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #191919;
-            color: #f0f0f0;
+            background-color: #080a0d; /* Even darker, subtle background */
+            color: #e2e8f0; /* Light gray for default text */
             line-height: 1.6;
             scroll-behavior: smooth;
-            overflow-x: hidden;
+            overflow-x: hidden; /* Prevent horizontal scroll from external elements */
         }
 
-        /* Heading font */
-        .font-serif-heading {
-            font-family: 'Cormorant Garamond', serif;
-        }
-        
-        /* Fixed navigation bar with blur effect */
+        /* Fixed navigation bar with stronger liquid glass effect */
         .fixed-nav {
-            backdrop-filter: blur(8px);
-            background-color: rgba(25, 25, 25, 0.6);
-            transition: background-color 0.3s ease-in-out;
+            backdrop-filter: blur(20px) saturate(1.8); /* Stronger blur and saturation for liquid glass */
+            background-color: rgba(13, 17, 23, 0.4); /* More transparent background */
+            z-index: 1000;
+            border-bottom: 1px solid rgba(48, 54, 61, 0.5); /* Subtle border for definition */
         }
         
         /* Navigation link styling */
         .nav-link {
             position: relative;
-            transition: color 0.2s ease-in-out;
-            padding-bottom: 5px; /* Space for the underline */
+            transition: color 0.3s ease-in-out;
+            padding-bottom: 6px; /* Space for the underline */
         }
         .nav-link::after {
             content: '';
             position: absolute;
             width: 0;
-            height: 2px;
+            height: 3px; /* Thicker underline */
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            background-color: #ffcc00;
+            background-color: var(--accent-color);
             transition: width 0.3s ease-in-out;
         }
         .nav-link.active::after,
@@ -55,56 +59,265 @@
         }
         .nav-link.active,
         .nav-link:hover {
-            color: #ffcc00;
+            color: var(--accent-color);
         }
 
         /* Scroll-to-reveal animation */
         .animate-on-scroll {
             opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 1s ease-out, transform 1s ease-out;
+            transform: translateY(30px); /* More pronounced slide-up */
+            transition: opacity 0.8s cubic-bezier(0.2, 0.8, 0.2, 1), transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); /* Smoother bezier curve */
         }
         .animate-on-scroll.in-view {
             opacity: 1;
             transform: translateY(0);
         }
 
-        /* Horizontal scroll container for projects */
-        .horizontal-scroll-container {
-            overflow-x: scroll;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none;  /* IE and Edge */
-        }
-        .horizontal-scroll-container::-webkit-scrollbar {
-            display: none; /* Chrome, Safari, Opera */
-        }
-
-        /* Project card styling */
+        /* Project card styling with subtle liquid glass effect */
         .project-card {
-            flex-shrink: 0;
-            width: 320px; /* Fixed width for horizontal scroll */
-            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
-            background-color: #212121;
+            background-color: rgba(22, 27, 34, 0.6); /* Translucent background */
+            border: 1px solid rgba(48, 54, 61, 0.7); /* More opaque border */
+            backdrop-filter: blur(8px); /* Frosted glass effect for cards */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, border-color 0.3s ease-in-out;
+            border-radius: 1rem; /* Consistent large border-radius */
+            overflow: hidden; /* Ensure content stays within rounded corners */
         }
         .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            transform: translateY(-10px); /* More lift */
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 230, 118, 0.3); /* Deeper shadow with subtle accent glow */
+            border-color: var(--accent-color); /* Accent color border on hover */
         }
         
-        /* Modal styling */
+        /* Modal styling with strong liquid glass effect */
         .modal-overlay {
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.8); /* Slightly less opaque for better blur effect visibility */
             z-index: 2000;
+            backdrop-filter: blur(15px); /* Stronger blur for the modal overlay */
+            transition: opacity 0.3s ease-in-out;
         }
         .modal-content {
-            background-color: #212121;
+            background-color: rgba(22, 27, 34, 0.8); /* Translucent background */
+            border: 1px solid var(--accent-color); /* Accent color border */
+            border-radius: 1rem; /* Consistent large border-radius */
+            max-height: 90vh; /* Ensure modal is scrollable */
+            overflow-y: auto; /* Enable scrolling for modal content */
+            padding: 2.5rem; /* Increased padding */
+            backdrop-filter: blur(10px) saturate(1.5); /* Liquid glass effect for modal content */
+        }
+
+        /* Input field styling with subtle transparency */
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            background-color: rgba(13, 17, 23, 0.7); /* Slightly transparent background */
+            border: 1px solid #30363d; /* Subtle border */
+            color: #e2e8f0; /* Light text color */
+            transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border-radius: 0.5rem; /* Slightly rounded */
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 3px rgba(0, 230, 118, 0.4); /* Glowing focus ring */
+            outline: none;
+        }
+
+        /* Button styling */
+        .primary-button {
+            background-color: var(--accent-color);
+            color: #161b22; /* Dark text for contrast */
+            font-weight: 700;
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+            box-shadow: 0 5px 15px rgba(0, 230, 118, 0.3); /* Subtle glow */
+            border-radius: 0.5rem; /* Consistent button rounding */
+        }
+        .primary-button:hover {
+            background-color: #00BF6F; /* Slightly darker accent on hover */
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 230, 118, 0.5);
+        }
+
+        .secondary-button {
+            background-color: rgba(48, 54, 61, 0.6); /* Translucent background */
+            color: #e2e8f0;
+            border: 1px solid rgba(72, 79, 88, 0.7);
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out, border-color 0.3s ease-in-out;
+            border-radius: 0.5rem; /* Consistent button rounding */
+            backdrop-filter: blur(5px); /* Subtle blur for secondary buttons */
+        }
+        .secondary-button:hover {
+            background-color: rgba(72, 79, 88, 0.8);
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        /* Custom scrollbar for webkit browsers */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px; /* For horizontal scroll */
+        }
+        ::-webkit-scrollbar-track {
+            background: #161b22;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-color); /* Accent colored scroll thumb */
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #00BF6F; /* Slightly darker accent on hover */
+        }
+
+        /* Hero section specific styling for the photo placeholder */
+        .hero-photo-placeholder {
+            border-radius: 50%;
+            border: 3px solid var(--accent-color);
+            box-shadow: 0 0 25px rgba(0, 230, 118, 0.4);
+            animation: pulse-glow 2s infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            from { box-shadow: 0 0 15px rgba(0, 230, 118, 0.3), 0 0 25px rgba(0, 230, 118, 0.1); }
+            to { box-shadow: 0 0 25px rgba(0, 230, 118, 0.6), 0 0 40px rgba(0, 230, 118, 0.2); }
+        }
+
+        /* OS Element Styling */
+        .os-element {
+            position: absolute;
+            background-color: rgba(0, 230, 118, 0.1); /* Translucent accent color */
+            border: 1px solid rgba(0, 230, 118, 0.3); /* Subtle border */
+            backdrop-filter: blur(10px) saturate(1.5); /* Liquid glass effect */
+            border-radius: 1rem; /* Rounded corners */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: var(--accent-color);
+            text-shadow: 0 0 5px rgba(0, 230, 118, 0.5); /* Subtle glow */
+            box-shadow: 0 0 15px rgba(0, 230, 118, 0.2); /* Soft shadow */
+            padding: 1.5rem 2rem; /* Generous padding */
+            z-index: 50; /* Below main text, above background image */
+            transition: transform 0.1s ease-out; /* Quick response to mouse */
+            animation: floatOS 20s infinite ease-in-out alternate; /* Gentle floating animation */
+            will-change: transform;
+            text-align: center; /* Center text within element */
+        }
+
+        .os-element .icon {
+            font-size: 2.5rem; /* Icon size */
+            margin-bottom: 0.5rem;
+        }
+
+        .os-element .title {
+            font-size: 1.5rem; /* Title font size */
+            margin-bottom: 0.5rem;
+        }
+
+        .os-element .skill-list {
+            font-size: 0.9rem; /* Skill list font size */
+            line-height: 1.3;
+            opacity: 0.8;
+            font-weight: 500;
+        }
+
+        /* Specific positioning for OS elements (adjusted to be closer to center) */
+        .os-element-android {
+            top: 25%; /* Closer to center from top */
+            left: 20%; /* Closer to center from left */
+            animation-delay: 0s;
+            animation-duration: 22s;
+            width: 180px; /* Fixed width for better control */
+            height: auto; /* Auto height to fit content */
+        }
+        .os-element-wearos {
+            bottom: 25%; /* Closer to center from bottom */
+            right: 20%; /* Closer to center from right */
+            animation-delay: 3s;
+            animation-duration: 25s;
+            width: 180px; /* Fixed width */
+            height: auto;
+        }
+        .os-element-android-dev {
+            top: 45%; /* Adjusted to be slightly above center */
+            left: 15%; /* Closer to center from left */
+            animation-delay: 6s;
+            animation-duration: 20s;
+            width: 220px; /* Wider for more skills */
+            height: auto;
+            padding: 1.2rem 1.8rem;
+        }
+        .os-element-designer {
+            top: 15%; /* Closer to center from top */
+            right: 15%; /* Closer to center from right */
+            animation-delay: 9s;
+            animation-duration: 23s;
+            width: 220px; /* Wider for more skills */
+            height: auto;
+            padding: 1.2rem 1.8rem;
+        }
+
+
+        @keyframes floatOS {
+            0% { transform: translate(0, 0) rotate(0deg); opacity: 0.9; }
+            25% { transform: translate(3vw, -2vh) rotate(2deg); opacity: 0.95; }
+            50% { transform: translate(0, 4vh) rotate(0deg); opacity: 0.9; }
+            75% { transform: translate(-3vw, -2vh) rotate(-2deg); opacity: 0.95; }
+            100% { transform: translate(0, 0) rotate(0deg); opacity: 0.9; }
+        }
+
+        /* Media queries for responsiveness */
+        @media (max-width: 768px) {
+            .os-element {
+                font-size: 1rem; /* Smaller font for mobile */
+                padding: 0.8rem 1.2rem; /* Smaller padding for mobile */
+                border-radius: 0.75rem;
+                width: 150px; /* Smaller width for mobile */
+            }
+            .os-element .icon {
+                font-size: 2rem;
+            }
+            .os-element .title {
+                font-size: 1.2rem;
+            }
+            .os-element .skill-list {
+                font-size: 0.75rem;
+            }
+
+            /* Mobile positioning adjustments */
+            .os-element-android {
+                top: 15%;
+                left: 10%;
+            }
+            .os-element-wearos {
+                bottom: 15%;
+                right: 10%;
+            }
+            .os-element-android-dev {
+                top: 50%;
+                left: 5%;
+                width: 170px;
+            }
+            .os-element-designer {
+                top: 10%;
+                right: 5%;
+                width: 170px;
+            }
+
+            .hero-section h1 {
+                font-size: 4rem; /* Adjust font size for smaller screens */
+            }
+            .hero-section p {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body class="min-h-screen">
 
-    <nav id="main-nav" class="fixed-nav w-full py-4 px-8 top-0 z-1000 shadow-lg">
+    <!-- Fixed Navigation Bar -->
+    <nav id="main-nav" class="fixed-nav w-full py-4 px-8 top-0 shadow-lg">
         <div class="max-w-7xl mx-auto flex justify-center space-x-6 sm:space-x-12 text-lg sm:text-xl font-medium">
             <a href="#about" class="nav-link text-gray-300">About</a>
             <a href="#projects" class="nav-link text-gray-300">Projects</a>
@@ -113,31 +326,68 @@
         </div>
     </nav>
 
-    <header class="h-screen w-full flex flex-col items-center justify-center text-center p-8 relative overflow-hidden">
-        <div class="absolute inset-0 bg-cover bg-center opacity-5" style="background-image: url('https://placehold.co/1920x1080/1a1a1a/ffcc00/png?text=Creative+Background');"></div>
-        <div class="relative z-10 max-w-4xl mx-auto animate-on-scroll">
-            <p class="text-2xl sm:text-3xl text-gray-400 mb-4 tracking-wider">Independent Software Developer</p>
-            <h1 class="text-6xl sm:text-9xl font-extrabold text-white font-serif-heading leading-tight mb-8 tracking-tighter">
+    <!-- Hero Section - Full Viewport Height with OS Elements -->
+    <header id="hero-section" class="h-screen w-full flex flex-col items-center justify-center text-center p-8 relative overflow-hidden">
+        <!-- Subtle abstract background image -->
+        <div class="absolute inset-0 bg-cover bg-center opacity-5" style="background-image: url('https://placehold.co/1920x1080/0d1117/00E676/png?text=Abstract+Coding+Wave');"></div>
+        
+        <!-- Android OS Element -->
+        <div class="os-element os-element-android">
+            <i class="fab fa-android icon"></i>
+            <span class="title">Android OS</span>
+        </div>
+
+        <!-- Wear OS Element -->
+        <div class="os-element os-element-wearos">
+            <img src="https://placehold.co/40x40/00E676/0d1117?text=W" alt="Wear OS Icon" class="icon">
+            <span class="title">Wear OS</span>
+        </div>
+
+        <!-- Android Developer Element -->
+        <div class="os-element os-element-android-dev">
+            <i class="fab fa-dev icon"></i>
+            <span class="title">Android Developer</span>
+            <div class="skill-list mt-2">
+                Firebase<br>Native Dev<br>Jetpack Compose<br>MVVM/MVI
+            </div>
+        </div>
+
+        <!-- Designer Element -->
+        <div class="os-element os-element-designer">
+            <i class="fas fa-paint-brush icon"></i>
+            <span class="title">Designer</span>
+            <div class="skill-list mt-2">
+                Photoshop<br>Figma<br>Adobe XD<br>Prototyping
+            </div>
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto animate-on-scroll" id="hero-content">
+            <img src="https://placehold.co/180x180/00E676/0d1117?text=SK" alt="Samsul Karim Profile" class="hero-photo-placeholder mx-auto mb-8 animate-on-scroll">
+            <h1 class="text-6xl sm:text-8xl md:text-9xl font-extrabold text-white leading-tight mb-8 tracking-tighter">
                 Samsul Karim
             </h1>
+            <p class="text-2xl sm:text-3xl text-gray-400 mb-4 tracking-wider">Independent Software Developer & UI/UX Architect</p>
         </div>
+        <!-- Scroll indicator -->
         <div class="absolute bottom-10 animate-pulse">
-            <a href="#about" class="text-gray-500 hover:text-white transition-colors duration-300">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            <a href="#about" class="text-gray-500 hover:text-[--accent-color] transition-colors duration-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                 </svg>
             </a>
         </div>
     </header>
 
+    <!-- Main Content Sections -->
     <main class="w-full">
 
+        <!-- About Section -->
         <section id="about" class="max-w-7xl mx-auto py-24 px-8 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div class="animate-on-scroll">
-                <img src="https://placehold.co/600x600/ffcc00/191919/png?text=Your+Photo" alt="Samsul Karim Profile" class="w-full max-w-sm mx-auto md:max-w-full rounded-lg shadow-xl">
+                <img src="https://placehold.co/600x600/00E676/0d1117/png?text=Your+Profile+Photo" alt="Samsul Karim Profile" class="w-full max-w-sm mx-auto md:max-w-full rounded-lg shadow-xl border-2 border-gray-700">
             </div>
             <div class="animate-on-scroll">
-                <h2 class="text-6xl font-bold text-white font-serif-heading mb-8">About</h2>
+                <h2 class="text-5xl sm:text-6xl font-extrabold text-white mb-8">About Me</h2>
                 <div class="text-gray-300 leading-relaxed text-lg space-y-6">
                     <p>Hello! I'm Samsul Karim, a passionate independent software developer with a strong focus on creating impactful mobile applications. My expertise spans core development in Java and Kotlin, including modern Android frameworks like Jetpack Compose.</p>
                     <p>What sets my work apart is a deep commitment to user experience. I bring a robust UI/UX design background, proficient in tools such as Adobe Photoshop, Adobe XD, and Figma. This allows me to not only build robust applications but also to design interfaces that are inherently intuitive, aesthetically pleasing, and genuinely enjoyable to interact with.</p>
@@ -146,101 +396,106 @@
             </div>
         </section>
         
+        <!-- Projects Section - Grid Layout -->
         <section id="projects" class="max-w-7xl mx-auto py-24 px-8">
-            <div class="animate-on-scroll mb-16">
-                <h2 class="text-6xl font-bold text-white font-serif-heading mb-4">Selected Work</h2>
-                <p class="text-gray-400 text-xl max-w-2xl">A curated collection of my independent projects, showcasing my skills in development and design.</p>
+            <div class="animate-on-scroll mb-16 text-center">
+                <h2 class="text-5xl sm:text-6xl font-extrabold text-white mb-4">Selected Work</h2>
+                <p class="text-gray-400 text-xl max-w-3xl mx-auto">A curated collection of my independent projects, showcasing my skills in development and design.</p>
             </div>
-            <div class="horizontal-scroll-container pb-8">
-                <div class="flex space-x-10 pl-2">
-                    <div class="project-card relative p-7 rounded-xl shadow-lg border border-transparent hover:border-[#ffcc00]" data-project-id="english-teacher">
-                        <img src="https://placehold.co/600x400/ffcc00/191919/png?text=Project+1" alt="English Teacher App Screenshot" class="rounded-lg mb-5 w-full h-auto object-cover max-h-56">
-                        <h3 class="text-2xl font-semibold text-white mb-3">English Language Matrix</h3>
-                        <p class="text-gray-400 mb-5 leading-relaxed text-base">An advanced Android application engineered for language acquisition through dynamic lessons and real-time pronunciation analysis.</p>
-                        <div class="flex flex-wrap gap-2 text-sm text-gray-400">
-                            <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Kotlin</span>
-                            <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Jetpack Compose</span>
-                            <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">UI/UX Design</span>
-                        </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Project Card 1 -->
+                <div class="project-card relative p-7 rounded-xl shadow-lg cursor-pointer" data-project-id="english-teacher">
+                    <img src="https://placehold.co/600x400/00E676/161b22/png?text=Project+1+Thumbnail" alt="English Teacher App Screenshot" class="rounded-lg mb-5 w-full h-auto object-cover max-h-56 border border-gray-800">
+                    <h3 class="text-2xl font-semibold text-white mb-3">English Language Matrix</h3>
+                    <p class="text-gray-400 mb-5 leading-relaxed text-base">An advanced Android application engineered for language acquisition through dynamic lessons and real-time pronunciation analysis.</p>
+                    <div class="flex flex-wrap gap-2 text-sm text-gray-400">
+                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Kotlin</span>
+                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Jetpack Compose</span>
+                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">UI/UX Design</span>
                     </div>
-                    
-                    <div class="project-card relative p-7 rounded-xl shadow-lg border border-transparent hover:border-[#ffcc00]" data-project-id="spelling-app">
-                        <img src="https://placehold.co/600x400/ffcc00/191919/png?text=Project+2" alt="Spelling App Screenshot" class="rounded-lg mb-5 w-full h-auto object-cover max-h-56">
-                        <h3 class="text-2xl font-semibold text-white mb-3">Orthography Synthesizer</h3>
-                        <p class="text-gray-400 mb-5 leading-relaxed text-base">A gamified Android application designed to master spelling precision via multi-modal challenges and adaptive difficulty.</p>
-                        <div class="flex flex-wrap gap-2 text-sm text-gray-400">
-                            <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Java</span>
-                            <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Android SDK</span>
-                            <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Gamification</span>
-                        </div>
+                </div>
+                
+                <!-- Project Card 2 -->
+                <div class="project-card relative p-7 rounded-xl shadow-lg cursor-pointer" data-project-id="spelling-app">
+                    <img src="https://placehold.co/600x400/00E676/161b22/png?text=Project+2+Thumbnail" alt="Spelling App Screenshot" class="rounded-lg mb-5 w-full h-auto object-cover max-h-56 border border-gray-800">
+                    <h3 class="text-2xl font-semibold text-white mb-3">Orthography Synthesizer</h3>
+                    <p class="text-gray-400 mb-5 leading-relaxed text-base">A gamified Android application designed to master spelling precision via multi-modal challenges and adaptive difficulty.</p>
+                    <div class="flex flex-wrap gap-2 text-sm text-gray-400">
+                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Java</span>
+                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Android SDK</span>
+                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Gamification</span>
                     </div>
+                </div>
 
-                    <div class="project-card relative p-7 rounded-xl shadow-lg border border-transparent hover:border-[#ffcc00]" data-project-id="project-three">
-                        <img src="https://placehold.co/600x400/ffcc00/191919/png?text=Project+3" alt="Project Three Screenshot" class="rounded-lg mb-5 w-full h-auto object-cover max-h-56">
-                        <h3 class="text-2xl font-semibold text-white mb-3">Innovative Solution X</h3>
-                        <p class="text-gray-400 mb-5 leading-relaxed text-base">A brief description of another project showcasing your diverse skills and problem-solving abilities.</p>
-                        <div class="flex flex-wrap gap-2 text-sm text-gray-400">
-                            <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Technology A</span>
-                            <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Technology B</span>
-                        </div>
+                <!-- Project Card 3 -->
+                <div class="project-card relative p-7 rounded-xl shadow-lg cursor-pointer" data-project-id="project-three">
+                    <img src="https://placehold.co/600x400/00E676/161b22/png?text=Project+3+Thumbnail" alt="Project Three Screenshot" class="rounded-lg mb-5 w-full h-auto object-cover max-h-56 border border-gray-800">
+                    <h3 class="text-2xl font-semibold text-white mb-3">Innovative Solution X</h3>
+                    <p class="text-gray-400 mb-5 leading-relaxed text-base">A brief description of another project showcasing your diverse skills and problem-solving abilities.</p>
+                    <div class="flex flex-wrap gap-2 text-sm text-gray-400">
+                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Technology A</span>
+                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Technology B</span>
                     </div>
+                </div>
 
-                    <div class="project-card relative p-7 rounded-xl shadow-lg border border-transparent hover:border-[#ffcc00]" data-project-id="project-four">
-                        <img src="https://placehold.co/600x400/ffcc00/191919/png?text=Project+4" alt="Project Four Screenshot" class="rounded-lg mb-5 w-full h-auto object-cover max-h-56">
-                        <h3 class="text-2xl font-semibold text-white mb-3">Personal Dashboard App</h3>
-                        <p class="text-gray-400 mb-5 leading-relaxed text-base">An application designed to help users track personal goals, finances, and habits with a clean, intuitive interface.</p>
-                        <div class="flex flex-wrap gap-2 text-sm text-gray-400">
-                            <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Kotlin</span>
-                            <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Firebase</span>
-                            <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Jetpack Compose</span>
-                        </div>
+                <!-- Project Card 4 (added for grid demonstration) -->
+                <div class="project-card relative p-7 rounded-xl shadow-lg cursor-pointer" data-project-id="project-four">
+                    <img src="https://placehold.co/600x400/00E676/161b22/png?text=Project+4+Thumbnail" alt="Project Four Screenshot" class="rounded-lg mb-5 w-full h-auto object-cover max-h-56 border border-gray-800">
+                    <h3 class="text-2xl font-semibold text-white mb-3">Personal Dashboard App</h3>
+                    <p class="text-gray-400 mb-5 leading-relaxed text-base">An application designed to help users track personal goals, finances, and habits with a clean, intuitive interface.</p>
+                    <div class="flex flex-wrap gap-2 text-sm text-gray-400">
+                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Kotlin</span>
+                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Firebase</span>
+                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Jetpack Compose</span>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Journal Section (Placeholder) -->
         <section id="journal" class="max-w-7xl mx-auto py-24 px-8 animate-on-scroll">
-            <h2 class="text-6xl font-bold text-white font-serif-heading mb-8 text-center">Journal</h2>
+            <h2 class="text-5xl sm:text-6xl font-extrabold text-white mb-8 text-center">Journal // Insights</h2>
             <div class="text-gray-300 leading-relaxed text-lg max-w-3xl mx-auto text-center space-y-6">
                 <p>This section is dedicated to my insights, technical deep-dives, and reflections on the latest in mobile development and UI/UX design. Stay tuned for articles on Kotlin best practices, Jetpack Compose tutorials, design principles, and more!</p>
-                <p class="text-[#ffcc00] font-semibold mt-6">Content coming soon...</p>
+                <p class="text-[--accent-color] font-semibold mt-6">Content coming soon...</p>
             </div>
         </section>
 
+        <!-- Contact Section -->
         <section id="contact" class="max-w-7xl mx-auto py-24 px-8 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
             <div class="animate-on-scroll">
-                <h2 class="text-6xl font-bold text-white font-serif-heading mb-8">Contact</h2>
+                <h2 class="text-5xl sm:text-6xl font-extrabold text-white mb-8">Get In Touch</h2>
                 <div class="text-gray-300 leading-relaxed text-lg space-y-6">
                     <p>I am always open to new opportunities and collaborations. Whether you have a project idea, a question, or just want to connect, feel free to reach out. I'll get back to you as soon as possible.</p>
                     <div class="space-y-3">
-                        <p><span class="font-semibold text-white">Email:</span> your.email@example.com</p>
-                        <p><span class="font-semibold text-white">LinkedIn:</span> linkedin.com/in/yourprofile</p>
-                        <p><span class="font-semibold text-white">GitHub:</span> github.com/KarimTheCoder</p>
+                        <p><span class="font-semibold text-white">Email:</span> <a href="mailto:your.email@example.com" class="text-gray-400 hover:text-[--accent-color] transition-colors duration-200">your.email@example.com</a></p>
+                        <p><span class="font-semibold text-white">LinkedIn:</span> <a href="https://www.linkedin.com/in/yourprofile" target="_blank" class="text-gray-400 hover:text-[--accent-color] transition-colors duration-200">linkedin.com/in/yourprofile</a></p>
+                        <p><span class="font-semibold text-white">GitHub:</span> <a href="https://github.com/KarimTheCoder" target="_blank" class="text-gray-400 hover:text-[--accent-color] transition-colors duration-200">github.com/KarimTheCoder</a></p>
                     </div>
                     <div class="flex space-x-6 text-3xl pt-4">
-                        <a href="https://github.com/KarimTheCoder" target="_blank" class="text-gray-400 hover:text-[#ffcc00] transition-colors duration-200"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/yourprofile" target="_blank" class="text-gray-400 hover:text-[#ffcc00] transition-colors duration-200"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" target="_blank" class="text-gray-400 hover:text-[#ffcc00] transition-colors duration-200"><i class="fab fa-twitter"></i></a>
-                        <a href="#" target="_blank" class="text-gray-400 hover:text-[#ffcc00] transition-colors duration-200"><i class="fab fa-dribbble"></i></a>
+                        <a href="https://github.com/KarimTheCoder" target="_blank" class="text-gray-400 hover:text-[--accent-color] transition-colors duration-200"><i class="fab fa-github"></i></a>
+                        <a href="https://www.linkedin.com/in/yourprofile" target="_blank" class="text-gray-400 hover:text-[--accent-color] transition-colors duration-200"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-[--accent-color] transition-colors duration-200"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank" class="text-gray-400 hover:text-[--accent-color] transition-colors duration-200"><i class="fab fa-dribbble"></i></a>
                     </div>
                 </div>
             </div>
             <div class="animate-on-scroll">
-                <div class="bg-gray-900 p-10 rounded-xl shadow-2xl">
+                <div class="bg-[#161b22] p-10 rounded-xl shadow-2xl border border-gray-700">
                     <form class="space-y-6">
                         <div>
                             <label for="name" class="block text-gray-300 text-lg font-medium mb-2">Name</label>
-                            <input type="text" id="name" name="name" class="w-full p-4 rounded-md bg-gray-800 border-none focus:outline-none focus:ring-2 focus:ring-[#ffcc00] text-white" placeholder="Your Name">
+                            <input type="text" id="name" name="name" class="w-full p-4 rounded-md focus:outline-none focus:ring-2 focus:ring-[--accent-color] text-white" placeholder="Your Name">
                         </div>
                         <div>
                             <label for="email" class="block text-gray-300 text-lg font-medium mb-2">Email</label>
-                            <input type="email" id="email" name="email" class="w-full p-4 rounded-md bg-gray-800 border-none focus:outline-none focus:ring-2 focus:ring-[#ffcc00] text-white" placeholder="your.email@example.com">
+                            <input type="email" id="email" name="email" class="w-full p-4 rounded-md focus:outline-none focus:ring-2 focus:ring-[--accent-color] text-white" placeholder="your.email@example.com">
                         </div>
                         <div>
                             <label for="message" class="block text-gray-300 text-lg font-medium mb-2">Message</label>
-                            <textarea id="message" name="message" rows="6" class="w-full p-4 rounded-md bg-gray-800 border-none focus:outline-none focus:ring-2 focus:ring-[#ffcc00] text-white" placeholder="Your message..."></textarea>
+                            <textarea id="message" name="message" rows="6" class="w-full p-4 rounded-md focus:outline-none focus:ring-2 focus:ring-[--accent-color] text-white" placeholder="Your message..."></textarea>
                         </div>
-                        <button type="submit" class="w-full bg-[#ffcc00] text-gray-900 py-4 rounded-md font-bold text-lg hover:bg-yellow-500 transition duration-200 shadow-lg">Send Message</button>
+                        <button type="submit" class="w-full primary-button py-4 rounded-md font-bold text-lg shadow-lg">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -248,34 +503,42 @@
 
     </main>
 
+    <!-- Footer -->
     <footer class="w-full py-10 text-center text-gray-600 text-sm">
         &copy; 2025 Samsul Karim. All rights reserved.
     </footer>
 
+    <!-- Project Detail Modal -->
     <div id="projectModal" class="fixed inset-0 flex items-center justify-center p-4 modal-overlay hidden">
-        <div class="modal-content rounded-xl shadow-2xl max-w-4xl w-full p-8 relative max-h-[90vh] overflow-y-auto">
+        <div class="modal-content rounded-xl shadow-2xl max-w-4xl w-full p-8 relative">
             <button class="absolute top-5 right-5 text-gray-400 hover:text-white text-4xl font-bold transition duration-200" onclick="closeModal()">&times;</button>
-            <h3 id="modalProjectTitle" class="text-4xl font-bold font-serif-heading text-white mb-4"></h3>
+            <h3 id="modalProjectTitle" class="text-4xl font-extrabold text-white mb-4"></h3>
             <img id="modalProjectImage" src="" alt="Project Image" class="rounded-lg mb-5 w-full h-auto object-cover max-h-80 border border-gray-700">
             <p id="modalProjectDescription" class="text-gray-300 leading-relaxed mb-5 text-lg"></p>
             <div id="modalProjectTech" class="flex flex-wrap gap-3 text-sm text-gray-400 mb-6"></div>
             <div class="flex flex-col sm:flex-row gap-4 mt-6">
-                <a id="modalPlayStoreLink" href="#" target="_blank" class="bg-[#ffcc00] text-gray-900 px-7 py-3.5 rounded-md font-semibold text-lg hover:bg-yellow-500 transition duration-200 shadow-md flex items-center justify-center">
+                <a id="modalPlayStoreLink" href="#" target="_blank" class="primary-button px-7 py-3.5 rounded-md text-lg shadow-md flex items-center justify-center">
                     View on Play Store
                 </a>
-                <a id="modalGitHubLink" href="#" target="_blank" class="bg-gray-800 text-white px-7 py-3.5 rounded-md font-semibold text-lg hover:bg-gray-700 transition duration-200 shadow-md flex items-center justify-center">
+                <a id="modalGitHubLink" href="#" target="_blank" class="secondary-button px-7 py-3.5 rounded-md text-lg shadow-md flex items-center justify-center">
                     View on GitHub
                 </a>
+                <!-- New button for Gemini API integration -->
+                <button id="geminiExpandBtn" class="primary-button px-7 py-3.5 rounded-md text-lg shadow-md flex items-center justify-center space-x-2" onclick="expandProjectDescription()">
+                    <span id="geminiBtnText">✨ Expand Description</span>
+                    <div id="geminiLoader" class="loader hidden"></div>
+                </button>
             </div>
         </div>
     </div>
 
+    <!-- JavaScript for interactivity -->
     <script>
         // Data for your projects
         const projectsData = {
             "english-teacher": {
                 title: "English Language Matrix",
-                image: "https://placehold.co/600x400/ffcc00/191919/png?text=Project+1+Detail",
+                image: "https://placehold.co/600x400/00E676/161b22/png?text=Project+1+Detail",
                 description: "This application is designed to make learning English engaging and accessible. It features interactive lessons, pronunciation exercises, and quizzes tailored to different proficiency levels. My focus was on creating a clean, intuitive interface using Jetpack Compose to ensure a smooth and enjoyable user experience. The app also tracks user progress and provides personalized feedback to enhance learning.",
                 tech: ["Kotlin", "Jetpack Compose", "MVVM Architecture", "Room Database", "UI/UX Design", "Material Design"],
                 playStoreLink: "https://play.google.com/store/apps/details?id=your.english.app.id",
@@ -283,23 +546,23 @@
             },
             "spelling-app": {
                 title: "Orthography Synthesizer",
-                image: "https://placehold.co/600x400/ffcc00/191919/png?text=Project+2+Detail",
+                image: "https://placehold.co/600x400/00E676/161b22/png?text=Project+2+Detail",
                 description: "A fun and educational mobile game designed to help users improve their spelling skills. It includes multiple difficulty levels, various word categories, and real-time feedback. I built this using Java and custom Android views, optimizing performance and ensuring a highly responsive interface. The design emphasizes gamification to keep learners motivated.",
                 tech: ["Java", "Android SDK", "Custom Views", "Audio Playback", "Gamification", "UI/UX Principles"],
                 playStoreLink: "https://play.google.com/store/apps/details?id=your.spelling.app.id",
                 githubLink: "https://github.com/KarimTheCoder/spelling-app"
             },
             "project-three": {
-                title: "Project Three: Innovative Solution X",
-                image: "https://placehold.co/600x400/ffcc00/191919/png?text=Project+3+Detail",
+                title: "Innovative Solution X",
+                image: "https://placehold.co/600x400/00E676/161b22/png?text=Project+3+Detail",
                 description: "This is a placeholder description for another one of your projects. Detail its purpose, the challenges you faced, your technical solutions, and the impact it had. Highlight any unique features or technologies used.",
                 tech: ["Technology A", "Technology B", "Framework C", "Concept D"],
                 playStoreLink: "#",
                 githubLink: "#"
             },
             "project-four": {
-                title: "Project Four: Personal Dashboard App",
-                image: "https://placehold.co/600x400/ffcc00/191919/png?text=Project+4+Detail",
+                title: "Personal Dashboard App",
+                image: "https://placehold.co/600x400/00E676/161b22/png?text=Project+4+Detail",
                 description: "An application designed to help users track personal goals, finances, and habits with a clean, intuitive interface. I focused on user-centered design and a seamless data synchronization process.",
                 tech: ["Kotlin", "Firebase", "Jetpack Compose", "Data Syncing", "UI/UX"],
                 playStoreLink: "#",
@@ -310,12 +573,20 @@
         // Modal functionality
         const projectCards = document.querySelectorAll('.project-card');
         const projectModal = document.getElementById('projectModal');
+        const geminiExpandBtn = document.getElementById('geminiExpandBtn');
+        const geminiBtnText = document.getElementById('geminiBtnText');
+        const geminiLoader = document.getElementById('geminiLoader');
+
         function openModal(projectId) {
             const project = projectsData[projectId];
             if (project) {
                 document.getElementById('modalProjectTitle').textContent = project.title;
                 document.getElementById('modalProjectImage').src = project.image;
                 document.getElementById('modalProjectDescription').textContent = project.description;
+                
+                // Store the original description for potential re-expansion or reset
+                projectModal.dataset.originalDescription = project.description;
+
                 const techContainer = document.getElementById('modalProjectTech');
                 techContainer.innerHTML = '';
                 project.tech.forEach(tag => {
@@ -326,6 +597,13 @@
                 });
                 document.getElementById('modalPlayStoreLink').href = project.playStoreLink;
                 document.getElementById('modalGitHubLink').href = project.githubLink;
+                
+                // Reset Gemini button state
+                geminiBtnText.textContent = '✨ Expand Description';
+                geminiLoader.classList.add('hidden');
+                geminiExpandBtn.disabled = false;
+
+
                 projectModal.classList.remove('hidden');
             }
         }
@@ -337,7 +615,108 @@
             if (e.target === projectModal) closeModal();
         });
 
-        // Scroll animation logic
+        // Gemini API Integration for Project Description Expansion
+        async function expandProjectDescription() {
+            geminiBtnText.textContent = 'Generating...';
+            geminiLoader.classList.remove('hidden');
+            geminiExpandBtn.disabled = true;
+
+            const projectTitle = document.getElementById('modalProjectTitle').textContent;
+            const originalDescription = projectModal.dataset.originalDescription; // Use the stored original description
+
+            const prompt = `You are a professional portfolio writer. Expand on the following project description, focusing on the technical challenges, the solutions implemented, and the impact or unique aspects of the project. Make it sound professional, engaging, and detailed, as if for a senior software engineer's portfolio. Ensure the expanded description is at least 150 words.
+
+Project Title: ${projectTitle}
+Original Description: ${originalDescription}
+
+Expanded Details:`;
+
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+            const payload = { contents: chatHistory };
+            const apiKey = ""; // API key will be provided by the Canvas environment at runtime
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const expandedText = result.candidates[0].content.parts[0].text;
+                    document.getElementById('modalProjectDescription').textContent = expandedText;
+                    geminiBtnText.textContent = '✨ Regenerate Description'; // Change text after generation
+                } else {
+                    console.error("Gemini API response structure unexpected:", result);
+                    document.getElementById('modalProjectDescription').textContent = originalDescription + "\n\nError: Could not generate expanded description. Please try again.";
+                    geminiBtnText.textContent = '✨ Expand Description (Error)';
+                }
+            } catch (error) {
+                console.error("Error calling Gemini API:", error);
+                document.getElementById('modalProjectDescription').textContent = originalDescription + "\n\nError: Failed to connect to Gemini API. Please check your network and try again.";
+                geminiBtnText.textContent = '✨ Expand Description (Error)';
+            } finally {
+                geminiLoader.classList.add('hidden');
+                geminiExpandBtn.disabled = false;
+            }
+        }
+
+        // Defer script execution until DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroSection = document.getElementById('hero-section'); // Main hero section container
+            const osElements = document.querySelectorAll('.os-element'); // Select all OS/skill elements
+
+            const sensitivity = 0.02; // Adjust sensitivity for mouse effect, slightly less to feel more 'grand'
+
+            // Store the initial CSS animation transform for each OS element
+            osElements.forEach(el => {
+                const computedStyle = window.getComputedStyle(el);
+                el.dataset.baseTransform = computedStyle.transform;
+            });
+
+            // Mouse interaction for OS elements
+            heroSection.addEventListener('mousemove', (e) => {
+                const rect = heroSection.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+
+                const mouseX = e.clientX - centerX;
+                const mouseY = e.clientY - centerY;
+
+                osElements.forEach((el, index) => {
+                    // Apply a parallax effect based on mouse position
+                    // The effect strength can be varied by multiplying with a factor
+                    const depthFactor = 0.5 + (index * 0.1); // Vary effect per element for depth
+                    const offsetX = mouseX * sensitivity * depthFactor;
+                    const offsetY = mouseY * sensitivity * depthFactor;
+
+                    el.style.transition = 'transform 0.1s ease-out'; // Quick transition for mouse movement
+                    
+                    // Combine with original base transform (from CSS floatOS animation)
+                    el.style.transform = `${el.dataset.baseTransform} translate(${offsetX}px, ${offsetY}px)`;
+                });
+            });
+
+            heroSection.addEventListener('mouseleave', () => {
+                osElements.forEach(el => {
+                    // Reset transform and allow animation to take over again
+                    el.style.transition = 'transform 0.5s ease-out'; // Smooth return
+                    el.style.transform = el.dataset.baseTransform || 'translate(0,0)'; // Reset to animation's base
+                });
+            });
+        });
+
+        // Scroll animation logic for sections (outside DOMContentLoaded as it operates on different elements)
         const sections = document.querySelectorAll('section');
         const observerOptions = {
             root: null,
@@ -359,28 +738,33 @@
         });
 
         // Navigation active state on scroll
-        const navLinks = document.querySelectorAll('.nav-link');
-        const sectionObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const currentSectionId = entry.target.id;
-                    navLinks.forEach(link => {
-                        link.classList.remove('active');
-                        if (link.getAttribute('href').substring(1) === currentSectionId) {
-                            link.classList.add('active');
-                        }
-                    });
-                }
-            });
-        }, { rootMargin: '-50% 0px -50% 0px' }); // This threshold activates link in the middle of the viewport
-        sections.forEach(section => sectionObserver.observe(section));
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const sectionsForNav = document.querySelectorAll('section'); // Re-query sections for this specific observer
+            const sectionObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const currentSectionId = entry.target.id;
+                        navLinks.forEach(link => {
+                            link.classList.remove('active');
+                            if (link.getAttribute('href').substring(1) === currentSectionId) {
+                                link.classList.add('active');
+                            }
+                        });
+                    }
+                });
+            }, { rootMargin: '-30% 0px -30% 0px' });
+            sectionsForNav.forEach(section => sectionObserver.observe(section));
+        });
 
-        // Smooth scroll for nav links (overrides default smooth-scroll)
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
+        // Smooth scroll for nav links
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
                 });
             });
         });
