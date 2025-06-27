@@ -224,36 +224,64 @@
 
         /* Specific positioning for OS elements (adjusted to be closer to center) */
         .os-element-android {
-            top: 25%; /* Closer to center from top */
-            left: 20%; /* Closer to center from left */
+            top: 20%;
+            left: 15%;
             animation-delay: 0s;
             animation-duration: 22s;
-            width: 180px; /* Fixed width for better control */
-            height: auto; /* Auto height to fit content */
+            width: 180px;
+            height: auto;
         }
         .os-element-wearos {
-            bottom: 25%; /* Closer to center from bottom */
-            right: 20%; /* Closer to center from right */
+            bottom: 20%;
+            right: 15%;
             animation-delay: 3s;
             animation-duration: 25s;
-            width: 180px; /* Fixed width */
+            width: 180px;
             height: auto;
         }
         .os-element-android-dev {
-            top: 45%; /* Adjusted to be slightly above center */
-            left: 15%; /* Closer to center from left */
+            top: 40%;
+            left: 5%;
             animation-delay: 6s;
             animation-duration: 20s;
-            width: 220px; /* Wider for more skills */
+            width: 220px;
             height: auto;
             padding: 1.2rem 1.8rem;
         }
         .os-element-designer {
-            top: 15%; /* Closer to center from top */
-            right: 15%; /* Closer to center from right */
+            top: 5%;
+            right: 5%;
             animation-delay: 9s;
             animation-duration: 23s;
-            width: 220px; /* Wider for more skills */
+            width: 220px;
+            height: auto;
+            padding: 1.2rem 1.8rem;
+        }
+        .os-element-ai-expert {
+            bottom: 5%;
+            left: 20%;
+            animation-delay: 12s;
+            animation-duration: 24s;
+            width: 200px;
+            height: auto;
+            padding: 1.2rem 1.8rem;
+        }
+        .os-element-software-arch {
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%); /* Keep centered for this one */
+            animation-delay: 15s;
+            animation-duration: 21s;
+            width: 220px;
+            height: auto;
+            padding: 1.2rem 1.8rem;
+        }
+        .os-element-programming-langs {
+            bottom: 10%;
+            right: 5%;
+            animation-delay: 18s; /* New delay */
+            animation-duration: 26s; /* New duration */
+            width: 220px;
             height: auto;
             padding: 1.2rem 1.8rem;
         }
@@ -302,6 +330,22 @@
             .os-element-designer {
                 top: 10%;
                 right: 5%;
+                width: 170px;
+            }
+            .os-element-ai-expert {
+                bottom: 5%;
+                left: 15%;
+                width: 160px;
+            }
+            .os-element-software-arch {
+                top: 5%;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 180px;
+            }
+            .os-element-programming-langs {
+                bottom: 5%;
+                right: 15%;
                 width: 170px;
             }
 
@@ -358,6 +402,27 @@
             <span class="title">Designer</span>
             <div class="skill-list mt-2">
                 Photoshop<br>Figma<br>Adobe XD<br>Prototyping
+            </div>
+        </div>
+
+        <!-- Certified AI Expert Element -->
+        <div class="os-element os-element-ai-expert">
+            <i class="fas fa-brain icon"></i> <!-- Icon for AI/Brain -->
+            <span class="title">Certified AI Expert</span>
+        </div>
+
+        <!-- Software Architecture Element -->
+        <div class="os-element os-element-software-arch">
+            <i class="fas fa-sitemap icon"></i> <!-- Icon for Architecture -->
+            <span class="title">Software Architecture</span>
+        </div>
+
+        <!-- Programming Languages Element -->
+        <div class="os-element os-element-programming-langs">
+            <i class="fas fa-code icon"></i> <!-- Icon for code/programming -->
+            <span class="title">Programming Languages</span>
+            <div class="skill-list mt-2">
+                Kotlin (Jetbrains Cert)<br>Java<br>Python
             </div>
         </div>
 
