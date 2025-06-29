@@ -92,9 +92,19 @@
         .modal-overlay {
             background-color: rgba(0, 0, 0, 0.8); /* Slightly less opaque for better blur effect visibility */
             z-index: 2000;
+            /* Initial state for hidden modal */
+            visibility: hidden;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, visibility 0s linear 0.3s; /* Delay visibility change on hide */
             backdrop-filter: blur(15px); /* Stronger blur for the modal overlay */
-            transition: opacity 0.3s ease-in-out;
         }
+        /* Active state for visible modal */
+        .modal-overlay.active {
+            visibility: visible;
+            opacity: 1;
+            transition-delay: 0s; /* No delay on show */
+        }
+
         .modal-content {
             background-color: rgba(22, 27, 34, 0.8); /* Translucent background */
             border: 1px solid var(--accent-color); /* Accent color border */
@@ -103,6 +113,16 @@
             overflow-y: auto; /* Enable scrolling for modal content */
             padding: 2.5rem; /* Increased padding */
             backdrop-filter: blur(10px) saturate(1.5); /* Liquid glass effect for modal content */
+            
+            /* Initial state for hidden modal content */
+            transform: scale(0.9);
+            opacity: 0;
+            transition: transform 0.3s ease-out, opacity 0.3s ease-out; /* Smooth transition for content */
+        }
+        /* Active state for visible modal content */
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+            opacity: 1;
         }
 
         /* Input field styling with subtle transparency */
@@ -324,37 +344,37 @@
 
             /* Mobile positioning adjustments */
             .os-element-android {
-                top: 15%;
-                left: 10%;
+                top: 10%;
+                left: 5%;
             }
             .os-element-wearos {
-                bottom: 15%;
-                right: 10%;
+                bottom: 10%;
+                right: 5%;
             }
             .os-element-android-dev {
-                top: 50%;
-                left: 5%;
+                top: 45%;
+                left: 3%;
                 width: 170px;
             }
             .os-element-designer {
-                top: 10%;
-                right: 5%;
+                top: 3%;
+                right: 3%;
                 width: 170px;
             }
             .os-element-ai-expert {
-                bottom: 5%;
-                left: 15%;
+                bottom: 3%;
+                left: 3%;
                 width: 160px;
             }
             .os-element-software-arch {
                 top: 50%; /* Center vertically */
                 left: 50%;
-                transform: translateX(-50%); /* Center horizontally */
+                transform: translate(-50%, -50%); /* Center horizontally */
                 width: 180px;
             }
             .os-element-programming-langs {
-                bottom: 5%;
-                right: 15%;
+                bottom: 3%;
+                right: 3%;
                 width: 170px;
             }
 
@@ -479,7 +499,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 <!-- Project Card 1 -->
                 <div class="project-card relative p-7 rounded-xl shadow-lg cursor-pointer" data-project-id="english-teacher">
-                    <img src="https://placehold.co/600x400/00E676/161b22/png?text=Project+1+Thumbnail" alt="English Teacher App Screenshot" class="rounded-lg mb-5 w-full h-auto object-cover max-h-56 border border-gray-800">
+                    <img src="https://i.postimg.cc/FHYQtDqp/Screenshot-6.png" alt="English Teacher App Screenshot" class="rounded-lg mb-5 w-full h-auto object-cover max-h-56 border border-gray-800">
                     <h3 class="text-2xl font-semibold text-white mb-3">English Language Matrix</h3>
                     <p class="text-gray-400 mb-5 leading-relaxed text-base">An advanced Android application engineered for language acquisition through dynamic lessons and real-time pronunciation analysis.</p>
                     <div class="flex flex-wrap gap-2 text-sm text-gray-400">
@@ -583,11 +603,23 @@
     </footer>
 
     <!-- Project Detail Modal -->
-    <div id="projectModal" class="fixed inset-0 flex items-center justify-center p-4 modal-overlay hidden">
+    <div id="projectModal" class="fixed inset-0 flex items-center justify-center p-4 modal-overlay">
         <div class="modal-content rounded-xl shadow-2xl max-w-4xl w-full p-8 relative">
             <button class="absolute top-5 right-5 text-gray-400 hover:text-white text-4xl font-bold transition duration-200" onclick="closeModal()">&times;</button>
             <h3 id="modalProjectTitle" class="text-4xl font-extrabold text-white mb-4"></h3>
-            <img id="modalProjectImage" src="" alt="Project Image" class="rounded-lg mb-5 w-full h-auto object-cover max-h-80 border border-gray-700">
+            
+            <!-- Conditionally display image or video -->
+            <div id="mediaContainer" class="relative pb-[56.25%] mb-5 rounded-lg overflow-hidden border border-gray-700">
+                <!-- 16:9 Aspect Ratio container (padding-bottom: 56.25%) -->
+                <img id="modalProjectImage" src="" alt="Project Image" class="absolute inset-0 w-full h-full object-cover">
+                <iframe id="modalProjectVideo" class="absolute inset-0 w-full h-full hidden" 
+                        src="" 
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                </iframe>
+            </div>
+
             <p id="modalProjectDescription" class="text-gray-300 leading-relaxed mb-5 text-lg"></p>
             <div id="modalProjectTech" class="flex flex-wrap gap-3 text-sm text-gray-400 mb-6"></div>
             <div class="flex flex-col sm:flex-row gap-4 mt-6">
@@ -611,16 +643,17 @@
         // Data for your projects
         const projectsData = {
             "english-teacher": {
-                title: "English Language Matrix",
-                image: "https://placehold.co/600x400/00E676/161b22/png?text=Project+1+Detail",
+                title: "Advanced Vocabulary Builder",
+                image: "https://i.postimg.cc/W1Fn7DWW/Screenshot-1-1.png",
                 description: "This application is designed to make learning English engaging and accessible. It features interactive lessons, pronunciation exercises, and quizzes tailored to different proficiency levels. My focus was on creating a clean, intuitive interface using Jetpack Compose to ensure a smooth and enjoyable user experience. The app also tracks user progress and provides personalized feedback to enhance learning.",
-                tech: ["Kotlin", "Jetpack Compose", "MVVM Architecture", "Room Database", "UI/UX Design", "Material Design"],
+                tech: ["Kotlin", "Jetpack Compose", "MVVM Architecture", "Room Database", "UI/UX Design"],
                 playStoreLink: "https://play.google.com/store/apps/details?id=your.english.app.id",
                 githubLink: "https://github.com/KarimTheCoder/english-teacher-app"
             },
             "spelling-app": {
                 title: "Orthography Synthesizer",
-                image: "https://placehold.co/600x400/00E676/161b22/png?text=Project+2+Detail",
+                image: "https://placehold.co/600x400/00E676/161b22/png?text=Project+2+Thumbnail",
+                videoUrl: "https://www.youtube.com/embed/UZ_peeloxAA?si=e0gaORV8QBNa0SS5", // Placeholder YouTube video
                 description: "A fun and educational mobile game designed to help users improve their spelling skills. It includes multiple difficulty levels, various word categories, and real-time feedback. I built this using Java and custom Android views, optimizing performance and ensuring a highly responsive interface. The design emphasizes gamification to keep learners motivated.",
                 tech: ["Java", "Android SDK", "Custom Views", "Audio Playback", "Gamification", "UI/UX Principles"],
                 playStoreLink: "https://play.google.com/store/apps/details?id=your.spelling.app.id",
@@ -628,7 +661,7 @@
             },
             "project-three": {
                 title: "Innovative Solution X",
-                image: "https://placehold.co/600x400/00E676/161b22/png?text=Project+3+Detail",
+                image: "https://placehold.co/600x400/00E676/161b22/png?text=Project+3+Thumbnail",
                 description: "This is a placeholder description for another one of your projects. Detail its purpose, the challenges you faced, your technical solutions, and the impact it had. Highlight any unique features or technologies used.",
                 tech: ["Technology A", "Technology B", "Framework C", "Concept D"],
                 playStoreLink: "#",
@@ -636,7 +669,7 @@
             },
             "project-four": {
                 title: "Personal Dashboard App",
-                image: "https://placehold.co/600x400/00E676/161b22/png?text=Project+4+Detail",
+                image: "https://placehold.co/600x400/00E676/161b22/png?text=Project+4+Thumbnail",
                 description: "An application designed to help users track personal goals, finances, and habits with a clean, intuitive interface. I focused on user-centered design and a seamless data synchronization process.",
                 tech: ["Kotlin", "Firebase", "Jetpack Compose", "Data Syncing", "UI/UX"],
                 playStoreLink: "#",
@@ -647,6 +680,8 @@
         // Modal functionality
         const projectCards = document.querySelectorAll('.project-card');
         const projectModal = document.getElementById('projectModal');
+        const modalProjectImage = document.getElementById('modalProjectImage');
+        const modalProjectVideo = document.getElementById('modalProjectVideo');
         const geminiExpandBtn = document.getElementById('geminiExpandBtn');
         const geminiBtnText = document.getElementById('geminiBtnText');
         const geminiLoader = document.getElementById('geminiLoader');
@@ -655,9 +690,20 @@
             const project = projectsData[projectId];
             if (project) {
                 document.getElementById('modalProjectTitle').textContent = project.title;
-                document.getElementById('modalProjectImage').src = project.image;
                 document.getElementById('modalProjectDescription').textContent = project.description;
                 
+                // Handle image vs. video display
+                if (project.videoUrl) {
+                    modalProjectImage.classList.add('hidden');
+                    modalProjectVideo.classList.remove('hidden');
+                    modalProjectVideo.src = project.videoUrl;
+                } else {
+                    modalProjectVideo.classList.add('hidden');
+                    modalProjectVideo.src = ""; // Clear video src
+                    modalProjectImage.classList.remove('hidden');
+                    modalProjectImage.src = project.image;
+                }
+
                 // Store the original description for potential re-expansion or reset
                 projectModal.dataset.originalDescription = project.description;
 
@@ -677,14 +723,25 @@
                 geminiLoader.classList.add('hidden');
                 geminiExpandBtn.disabled = false;
 
-
-                projectModal.classList.remove('hidden');
+                // Add active class to trigger smooth transition
+                projectModal.classList.add('active');
             }
         }
         function closeModal() {
-            projectModal.classList.add('hidden');
+            // Remove active class to trigger smooth reverse transition
+            projectModal.classList.remove('active');
+            // Clear video src to stop playback when modal closes
+            modalProjectVideo.src = "";
+            setTimeout(() => {
+                // This timeout ensures the modal content scales down/fades out before being fully "invisible"
+            }, 300); // Match CSS transition duration for content
         }
-        projectCards.forEach(card => card.addEventListener('click', () => openModal(card.dataset.projectId)));
+        projectCards.forEach(card => card.addEventListener('click', (e) => {
+            // Stop propagation to prevent modal closing immediately if click is inside card but not on an actionable element
+            e.stopPropagation(); 
+            openModal(card.dataset.projectId)
+        }));
+        // Close modal when clicking outside content (on the overlay)
         projectModal.addEventListener('click', (e) => {
             if (e.target === projectModal) closeModal();
         });
