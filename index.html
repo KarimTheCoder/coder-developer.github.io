@@ -499,8 +499,8 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                 <!-- Project Card 1 -->
                 <div class="project-card relative p-7 rounded-xl shadow-lg cursor-pointer" data-project-id="english-teacher">
-                    <img src="https://i.postimg.cc/FHYQtDqp/Screenshot-6.png" alt="English Teacher App Screenshot" class="rounded-lg mb-5 w-full h-auto object-cover max-h-56 border border-gray-800">
-                    <h3 class="text-2xl font-semibold text-white mb-3">English Language Matrix</h3>
+                    <img src="https://i.postimg.cc/8Pc9fhXw/Cover.png" alt="English Teacher App Screenshot" class="rounded-lg mb-5 w-full h-auto object-cover max-h-56 border border-gray-800">
+                    <h3 class="text-2xl font-semibold text-white mb-3">Advanced Vocabulary Builder</h3>
                     <p class="text-gray-400 mb-5 leading-relaxed text-base">An advanced Android application engineered for language acquisition through dynamic lessons and real-time pronunciation analysis.</p>
                     <div class="flex flex-wrap gap-2 text-sm text-gray-400">
                         <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Kotlin</span>
@@ -511,13 +511,13 @@
                 
                 <!-- Project Card 2 -->
                 <div class="project-card relative p-7 rounded-xl shadow-lg cursor-pointer" data-project-id="spelling-app">
-                    <img src="https://placehold.co/600x400/00E676/161b22/png?text=Project+2+Thumbnail" alt="Spelling App Screenshot" class="rounded-lg mb-5 w-full h-auto object-cover max-h-56 border border-gray-800">
-                    <h3 class="text-2xl font-semibold text-white mb-3">Orthography Synthesizer</h3>
+                    <img src="https://i.postimg.cc/Fsj14ZP7/Purple-Yellow-Professional-Mobile-Apps-Pitch-Deck-Presentation-4.png" alt="Spelling App Screenshot" class="rounded-lg mb-5 w-full h-auto object-cover max-h-56 border border-gray-800">
+                    <h3 class="text-2xl font-semibold text-white mb-3">The Banan(Spelling) App</h3>
                     <p class="text-gray-400 mb-5 leading-relaxed text-base">A gamified Android application designed to master spelling precision via multi-modal challenges and adaptive difficulty.</p>
                     <div class="flex flex-wrap gap-2 text-sm text-gray-400">
-                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Java</span>
-                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Android SDK</span>
-                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Gamification</span>
+                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Kotlin</span>
+                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Jetpack Compose</span>
+                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">MVVM</span>
                     </div>
                 </div>
 
@@ -610,14 +610,27 @@
             
             <!-- Conditionally display image or video -->
             <div id="mediaContainer" class="relative pb-[56.25%] mb-5 rounded-lg overflow-hidden border border-gray-700">
-                <!-- 16:9 Aspect Ratio container (padding-bottom: 56.25%) -->
-                <img id="modalProjectImage" src="" alt="Project Image" class="absolute inset-0 w-full h-full object-cover">
+                <!-- This is the main image/video display area -->
+                <img id="modalProjectImage" src="" alt="Project Image" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 ease-in-out">
                 <iframe id="modalProjectVideo" class="absolute inset-0 w-full h-full hidden" 
                         src="" 
                         frameborder="0" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                         allowfullscreen>
                 </iframe>
+
+                <!-- Slideshow controls - initially hidden, shown when images are present -->
+                <div id="slideshowControls" class="absolute inset-0 flex items-center justify-between p-4 hidden">
+                    <button id="slideshowPrev" class="bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-colors z-10">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button id="slideshowNext" class="bg-gray-800 bg-opacity-50 text-white p-2 rounded-full hover:bg-opacity-75 transition-colors z-10">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+                <div id="slideshowIndicators" class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2 hidden z-10">
+                    <!-- Indicators will be dynamically added here by JavaScript -->
+                </div>
             </div>
 
             <p id="modalProjectDescription" class="text-gray-300 leading-relaxed mb-5 text-lg"></p>
@@ -644,20 +657,31 @@
         const projectsData = {
             "english-teacher": {
                 title: "Advanced Vocabulary Builder",
-                image: "https://i.postimg.cc/W1Fn7DWW/Screenshot-1-1.png",
+                // Using an array for multiple images for the slideshow
+                images: [
+                    "https://i.postimg.cc/vZpJsczh/Screenshot-1.png",
+                    "https://i.postimg.cc/LXSGJwGZ/Screenshot-2.png",
+                    "https://i.postimg.cc/VNn3LmZ8/Quiz.png",
+                    "https://i.postimg.cc/Kz5wBQyp/Screenshot-3-1.png",
+                    "https://i.postimg.cc/1RJbzWBf/words-tab.png",        
+                    "https://i.postimg.cc/fy2PgLyx/Dark-Mode.png",
+                    "https://i.postimg.cc/0jkgBFfq/backup.png",
+                    "https://i.postimg.cc/DwW9Hqqm/tab.png"
+            
+                ],
                 description: "This application is designed to make learning English engaging and accessible. It features interactive lessons, pronunciation exercises, and quizzes tailored to different proficiency levels. My focus was on creating a clean, intuitive interface using Jetpack Compose to ensure a smooth and enjoyable user experience. The app also tracks user progress and provides personalized feedback to enhance learning.",
                 tech: ["Kotlin", "Jetpack Compose", "MVVM Architecture", "Room Database", "UI/UX Design"],
                 playStoreLink: "https://play.google.com/store/apps/details?id=your.english.app.id",
                 githubLink: "https://github.com/KarimTheCoder/english-teacher-app"
             },
             "spelling-app": {
-                title: "Orthography Synthesizer",
-                image: "https://placehold.co/600x400/00E676/161b22/png?text=Project+2+Thumbnail",
-                videoUrl: "https://www.youtube.com/embed/UZ_peeloxAA?si=e0gaORV8QBNa0SS5", // Placeholder YouTube video
-                description: "A fun and educational mobile game designed to help users improve their spelling skills. It includes multiple difficulty levels, various word categories, and real-time feedback. I built this using Java and custom Android views, optimizing performance and ensuring a highly responsive interface. The design emphasizes gamification to keep learners motivated.",
-                tech: ["Java", "Android SDK", "Custom Views", "Audio Playback", "Gamification", "UI/UX Principles"],
-                playStoreLink: "https://play.google.com/store/apps/details?id=your.spelling.app.id",
-                githubLink: "https://github.com/KarimTheCoder/spelling-app"
+                title: "The Banan(Spelling) App",
+                image: "https://i.postimg.cc/Fsj14ZP7/Purple-Yellow-Professional-Mobile-Apps-Pitch-Deck-Presentation-4.png", // This image will be shown if no video is present
+                videoUrl: "https://www.youtube.com/embed/ABYuaJXtcX4?si=5mWoN2o3ZAathbgP", // YouTube video URL
+                description: "An engaging and educational spelling app that helps users perfect their vocabulary effortlessly. It features spaced repetition, adaptive difficulty, and instant feedback. Developed with Kotlin, Jetpack Compose, Persistence Room Database, Material 3 and modern application architecture, it’s optimized for performance and smooth interaction. A sleek, gamified design encourages consistent learning and maximizes user retention.",
+                tech: ["Kotlin", "Jetpack Compose", "MVVM", "Room Database with Foreign Key", "Material 3","Spaced Repetition: Leitner System"],
+                playStoreLink: "",
+                githubLink: "https://github.com/KarimTheCoder/Bangla_Banan"
             },
             "project-three": {
                 title: "Innovative Solution X",
@@ -677,31 +701,143 @@
             }
         };
 
-        // Modal functionality
+        // Modal functionality and slideshow variables
         const projectCards = document.querySelectorAll('.project-card');
         const projectModal = document.getElementById('projectModal');
         const modalProjectImage = document.getElementById('modalProjectImage');
         const modalProjectVideo = document.getElementById('modalProjectVideo');
+        const slideshowControls = document.getElementById('slideshowControls');
+        const slideshowPrevBtn = document.getElementById('slideshowPrev');
+        const slideshowNextBtn = document.getElementById('slideshowNext');
+        const slideshowIndicatorsContainer = document.getElementById('slideshowIndicators');
+
         const geminiExpandBtn = document.getElementById('geminiExpandBtn');
         const geminiBtnText = document.getElementById('geminiBtnText');
         const geminiLoader = document.getElementById('geminiLoader');
 
+        let currentProjectSlides = [];
+        let currentSlideIndex = 0;
+        let slideshowInterval = null;
+        const SLIDESHOW_INTERVAL_TIME = 5000; // 5 seconds
+
+        // Function to show a specific slide
+        function showSlide(index) {
+            if (!currentProjectSlides || currentProjectSlides.length === 0) return;
+
+            // Ensure index loops correctly
+            if (index >= currentProjectSlides.length) {
+                currentSlideIndex = 0;
+            } else if (index < 0) {
+                currentSlideIndex = currentProjectSlides.length - 1;
+            } else {
+                currentSlideIndex = index;
+            }
+
+            // Fade out current image, change src, then fade in
+            modalProjectImage.style.opacity = 0;
+            setTimeout(() => {
+                modalProjectImage.src = currentProjectSlides[currentSlideIndex];
+                modalProjectImage.style.opacity = 1;
+            }, 300); // Match or slightly less than CSS transition duration
+
+            updateSlideshowIndicators();
+        }
+
+        // Function to go to the next slide
+        function nextSlide() {
+            showSlide(currentSlideIndex + 1);
+        }
+
+        // Function to go to the previous slide
+        function prevSlide() {
+            showSlide(currentSlideIndex - 1);
+        }
+
+        // Function to render slideshow indicators (dots)
+        function renderSlideshowIndicators() {
+            slideshowIndicatorsContainer.innerHTML = ''; // Clear existing indicators
+            if (!currentProjectSlides || currentProjectSlides.length <= 1) {
+                slideshowIndicatorsContainer.classList.add('hidden');
+                return;
+            }
+            slideshowIndicatorsContainer.classList.remove('hidden');
+
+            currentProjectSlides.forEach((_, index) => {
+                const dot = document.createElement('div');
+                dot.classList.add('w-3', 'h-3', 'rounded-full', 'bg-gray-400', 'cursor-pointer', 'transition-colors', 'duration-300');
+                if (index === currentSlideIndex) {
+                    dot.classList.add('bg-white'); // Active indicator color
+                }
+                dot.addEventListener('click', () => {
+                    clearInterval(slideshowInterval); // Stop auto-slide on manual interaction
+                    showSlide(index);
+                    slideshowInterval = setInterval(nextSlide, SLIDESHOW_INTERVAL_TIME); // Restart auto-slide
+                });
+                slideshowIndicatorsContainer.appendChild(dot);
+            });
+        }
+
+        // Function to update active indicator
+        function updateSlideshowIndicators() {
+            const indicators = slideshowIndicatorsContainer.querySelectorAll('div');
+            indicators.forEach((dot, index) => {
+                if (index === currentSlideIndex) {
+                    dot.classList.add('bg-white');
+                } else {
+                    dot.classList.remove('bg-white');
+                }
+            });
+        }
+
+        // Event listeners for slideshow buttons
+        slideshowPrevBtn.addEventListener('click', () => {
+            clearInterval(slideshowInterval); // Stop auto-slide on manual interaction
+            prevSlide();
+            slideshowInterval = setInterval(nextSlide, SLIDESHOW_INTERVAL_TIME); // Restart auto-slide
+        });
+        slideshowNextBtn.addEventListener('click', () => {
+            clearInterval(slideshowInterval); // Stop auto-slide on manual interaction
+            nextSlide();
+            slideshowInterval = setInterval(nextSlide, SLIDESHOW_INTERVAL_TIME); // Restart auto-slide
+        });
+
+
+        // Main modal open function
         function openModal(projectId) {
             const project = projectsData[projectId];
             if (project) {
                 document.getElementById('modalProjectTitle').textContent = project.title;
                 document.getElementById('modalProjectDescription').textContent = project.description;
                 
-                // Handle image vs. video display
+                // Reset media elements visibility
+                modalProjectImage.classList.add('hidden');
+                modalProjectVideo.classList.add('hidden');
+                slideshowControls.classList.add('hidden');
+                slideshowIndicatorsContainer.classList.add('hidden');
+                modalProjectVideo.src = ""; // Clear video src
+
+                // Handle video display
                 if (project.videoUrl) {
-                    modalProjectImage.classList.add('hidden');
                     modalProjectVideo.classList.remove('hidden');
                     modalProjectVideo.src = project.videoUrl;
-                } else {
-                    modalProjectVideo.classList.add('hidden');
-                    modalProjectVideo.src = ""; // Clear video src
+                    clearInterval(slideshowInterval); // Ensure slideshow is stopped
+                } 
+                // Handle image slideshow display
+                else if (project.images && project.images.length > 0) {
+                    modalProjectImage.classList.remove('hidden');
+                    slideshowControls.classList.remove('hidden');
+                    currentProjectSlides = project.images;
+                    currentSlideIndex = 0; // Start from the first slide
+                    showSlide(currentSlideIndex); // Show initial slide
+                    renderSlideshowIndicators(); // Render indicators for the new set of images
+                    clearInterval(slideshowInterval); // Clear any existing interval
+                    slideshowInterval = setInterval(nextSlide, SLIDESHOW_INTERVAL_TIME); // Start auto-slide
+                } 
+                // Handle single image display (fallback if no video or images array)
+                else if (project.image) {
                     modalProjectImage.classList.remove('hidden');
                     modalProjectImage.src = project.image;
+                    clearInterval(slideshowInterval); // Ensure slideshow is stopped
                 }
 
                 // Store the original description for potential re-expansion or reset
@@ -727,17 +863,23 @@
                 projectModal.classList.add('active');
             }
         }
+
+        // Main modal close function
         function closeModal() {
             // Remove active class to trigger smooth reverse transition
             projectModal.classList.remove('active');
             // Clear video src to stop playback when modal closes
             modalProjectVideo.src = "";
+            // Clear slideshow interval
+            clearInterval(slideshowInterval);
+            currentSlideIndex = 0; // Reset slide index for next open
             setTimeout(() => {
                 // This timeout ensures the modal content scales down/fades out before being fully "invisible"
             }, 300); // Match CSS transition duration for content
         }
+
+        // Event listeners for project cards to open modal
         projectCards.forEach(card => card.addEventListener('click', (e) => {
-            // Stop propagation to prevent modal closing immediately if click is inside card but not on an actionable element
             e.stopPropagation(); 
             openModal(card.dataset.projectId)
         }));
