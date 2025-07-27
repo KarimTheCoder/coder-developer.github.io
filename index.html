@@ -532,18 +532,6 @@
                         <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">User Authentication</span>
                     </div>
                 </div>
-
-                <!-- Project Card 4 (added for grid demonstration) -->
-                <div class="project-card relative p-7 rounded-xl shadow-lg cursor-pointer" data-project-id="project-four">
-                    <img src="https://placehold.co/600x400/00E676/161b22/png?text=Project+4+Thumbnail" alt="Project Four Screenshot" class="rounded-lg mb-5 w-full h-auto object-cover max-h-56 border border-gray-800">
-                    <h3 class="text-2xl font-semibold text-white mb-3">Personal Dashboard App</h3>
-                    <p class="text-gray-400 mb-5 leading-relaxed text-base">An application designed to help users track personal goals, finances, and habits with a clean, intuitive interface.</p>
-                    <div class="flex flex-wrap gap-2 text-sm text-gray-400">
-                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Kotlin</span>
-                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Firebase</span>
-                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Jetpack Compose</span>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -563,34 +551,35 @@
                 <div class="text-gray-300 leading-relaxed text-lg space-y-6">
                     <p>I am always open to new opportunities and collaborations. Whether you have a project idea, a question, or just want to connect, feel free to reach out. I'll get back to you as soon as possible.</p>
                     <div class="space-y-3">
-                        <p><span class="font-semibold text-white">Email:</span> <a href="mailto:your.email@example.com" class="text-gray-400 hover:text-[--accent-color] transition-colors duration-200">your.email@example.com</a></p>
-                        <p><span class="font-semibold text-white">LinkedIn:</span> <a href="https://www.linkedin.com/in/yourprofile" target="_blank" class="text-gray-400 hover:text-[--accent-color] transition-colors duration-200">linkedin.com/in/yourprofile</a></p>
+                        <p><span class="font-semibold text-white">Email:</span> <a href="mailto:your.email@example.com" class="text-gray-400 hover:text-[--accent-color] transition-colors duration-200">shamsulKarim09@gmail.com</a></p>
+                        <p><span class="font-semibold text-white">LinkedIn:</span> <a href="https://www.linkedin.com/in/samsul-karim-4a57081b9" target="_blank" class="text-gray-400 hover:text-[--accent-color] transition-colors duration-200">linkedin.com/in/samsul-karim</a></p>
                         <p><span class="font-semibold text-white">GitHub:</span> <a href="https://github.com/KarimTheCoder" target="_blank" class="text-gray-400 hover:text-[--accent-color] transition-colors duration-200">github.com/KarimTheCoder</a></p>
                     </div>
                     <div class="flex space-x-6 text-3xl pt-4">
                         <a href="https://github.com/KarimTheCoder" target="_blank" class="text-gray-400 hover:text-[--accent-color] transition-colors duration-200"><i class="fab fa-github"></i></a>
-                        <a href="https://www.linkedin.com/in/yourprofile" target="_blank" class="text-gray-400 hover:text-[--accent-color] transition-colors duration-200"><i class="fab fa-linkedin"></i></a>
-                        <a href="#" target="_blank" class="text-gray-400 hover:text-[--accent-color] transition-colors duration-200"><i class="fab fa-twitter"></i></a>
-                        <a href="#" target="_blank" class="text-gray-400 hover:text-[--accent-color] transition-colors duration-200"><i class="fab fa-dribbble"></i></a>
+                        <a href="https://www.linkedin.com/in/samsul-karim-4a57081b9" target="_blank" class="text-gray-400 hover:text-[--accent-color] transition-colors duration-200"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://www.dribbble.com/SamsulKarimDesigns" target="_blank" class="text-gray-400 hover:text-[--accent-color] transition-colors duration-200"><i class="fab fa-dribbble"></i></a>
                     </div>
                 </div>
             </div>
             <div class="animate-on-scroll">
                 <div class="bg-[#161b22] p-10 rounded-xl shadow-2xl border border-gray-700">
-                    <form class="space-y-6">
+                    <form id="contactForm" class="space-y-6" action="https://formspree.io/f/mjkorvaa" method="POST">
                         <div>
                             <label for="name" class="block text-gray-300 text-lg font-medium mb-2">Name</label>
-                            <input type="text" id="name" name="name" class="w-full p-4 rounded-md focus:outline-none focus:ring-2 focus:ring-[--accent-color] text-white" placeholder="Your Name">
+                            <input type="text" id="name" name="name" class="w-full p-4 rounded-md focus:outline-none focus:ring-2 focus:ring-[--accent-color] text-white" placeholder="Your Name" required>
                         </div>
                         <div>
                             <label for="email" class="block text-gray-300 text-lg font-medium mb-2">Email</label>
-                            <input type="email" id="email" name="email" class="w-full p-4 rounded-md focus:outline-none focus:ring-2 focus:ring-[--accent-color] text-white" placeholder="your.email@example.com">
+                            <input type="email" id="email" name="email" class="w-full p-4 rounded-md focus:outline-none focus:ring-2 focus:ring-[--accent-color] text-white" placeholder="your.email@example.com" required>
                         </div>
                         <div>
                             <label for="message" class="block text-gray-300 text-lg font-medium mb-2">Message</label>
-                            <textarea id="message" name="message" rows="6" class="w-full p-4 rounded-md focus:outline-none focus:ring-2 focus:ring-[--accent-color] text-white" placeholder="Your message..."></textarea>
+                            <textarea id="message" name="message" rows="6" class="w-full p-4 rounded-md focus:outline-none focus:ring-2 focus:ring-[--accent-color] text-white" placeholder="Your message..." required></textarea>
                         </div>
+                        <input type="hidden" name="_replyto" value="shamsulkarim09@gmail.com">
                         <button type="submit" class="w-full primary-button py-4 rounded-md font-bold text-lg shadow-lg">Send Message</button>
+                        <div id="formMessage" class="mt-4 text-center text-lg font-semibold"></div>
                     </form>
                 </div>
             </div>
@@ -892,7 +881,7 @@
         // Gemini API Integration for Project Description Expansion
         async function expandProjectDescription() {
             geminiBtnText.textContent = 'Generating...';
-            geminiLoader.classList.remove('hidden');
+            geminiLoader.classList.add('loader'); // Show loader
             geminiExpandBtn.disabled = true;
 
             const projectTitle = document.getElementById('modalProjectTitle').textContent;
@@ -940,10 +929,52 @@ Expanded Details:`;
                 document.getElementById('modalProjectDescription').textContent = originalDescription + "\n\nError: Failed to connect to Gemini API. Please check your network and try again.";
                 geminiBtnText.textContent = '✨ Expand Description (Error)';
             } finally {
-                geminiLoader.classList.add('hidden');
+                geminiLoader.classList.remove('loader'); // Hide loader
                 geminiExpandBtn.disabled = false;
             }
         }
+
+        // Contact Form Submission Handling
+        const contactForm = document.getElementById('contactForm');
+        const formMessage = document.getElementById('formMessage'); // Get the message div
+
+        contactForm.addEventListener('submit', async (event) => {
+            event.preventDefault(); // Prevent default form submission
+
+            formMessage.textContent = 'Sending message...';
+            formMessage.className = 'mt-4 text-center text-lg font-semibold text-gray-400';
+
+            const formData = new FormData(contactForm);
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    formMessage.textContent = 'Message sent successfully! I will get back to you soon.';
+                    formMessage.className = 'mt-4 text-center text-lg font-semibold text-[--accent-color]';
+                    contactForm.reset(); // Clear form fields
+                } else {
+                    const data = await response.json();
+                    if (data.errors) {
+                        formMessage.textContent = 'Error: ' + data.errors.map(error => error.message).join(', ');
+                    } else {
+                        formMessage.textContent = 'Error sending message. Please try again.';
+                    }
+                    formMessage.className = 'mt-4 text-center text-lg font-semibold text-red-500';
+                }
+            } catch (error) {
+                console.error('Network error:', error);
+                formMessage.textContent = 'Network error. Please try again later.';
+                formMessage.className = 'mt-4 text-center text-lg font-semibold text-red-500';
+            }
+        });
+
 
         // Defer script execution until DOM is fully loaded
         document.addEventListener('DOMContentLoaded', () => {
