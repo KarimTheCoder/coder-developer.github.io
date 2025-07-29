@@ -394,7 +394,6 @@
         <div class="max-w-7xl mx-auto flex justify-center space-x-6 sm:space-x-12 text-lg sm:text-xl font-medium">
             <a href="#about" class="nav-link text-gray-300">About</a>
             <a href="#projects" class="nav-link text-gray-300">Projects</a>
-            <a href="#journal" class="nav-link text-gray-300">Journal</a>
             <a href="#contact" class="nav-link text-gray-300">Contact</a>
         </div>
     </nav>
@@ -402,7 +401,7 @@
     <!-- Hero Section - Full Viewport Height with OS Elements -->
     <header id="hero-section" class="h-screen w-full flex flex-col items-center justify-center text-center p-8 relative overflow-hidden">
         <!-- Subtle abstract background image -->
-        <div class="absolute inset-0 bg-cover bg-center opacity-5" style="background-image: url('https://placehold.co/1920x1080/0d1117/00E676/png?text=Abstract+Coding+Wave');"></div>
+        <!-- <div class="absolute inset-0 bg-cover bg-center opacity-5" style="background-image: url('https://placehold.co/1920x1080/0d1117/00E676/png?text=Abstract+Coding+Wave');"></div> -->
         
         <!-- Android OS Element -->
         <div class="os-element os-element-android">
@@ -503,9 +502,9 @@
                     <h3 class="text-2xl font-semibold text-white mb-3">Advanced Vocabulary Builder</h3>
                     <p class="text-gray-400 mb-5 leading-relaxed text-base">An advanced Android application engineered for language acquisition through dynamic lessons and real-time pronunciation analysis.</p>
                     <div class="flex flex-wrap gap-2 text-sm text-gray-400">
-                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Kotlin</span>
-                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Jetpack Compose</span>
-                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">UI/UX Design</span>
+                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Java</span>
+                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Firebase</span>
+                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Authentication</span>
                     </div>
                 </div>
                 
@@ -535,14 +534,7 @@
             </div>
         </section>
 
-        <!-- Journal Section (Placeholder) -->
-        <section id="journal" class="max-w-7xl mx-auto py-24 px-8 animate-on-scroll">
-            <h2 class="text-5xl sm:text-6xl font-extrabold text-white mb-8 text-center">Journal // Insights</h2>
-            <div class="text-gray-300 leading-relaxed text-lg max-w-3xl mx-auto text-center space-y-6">
-                <p>This section is dedicated to my insights, technical deep-dives, and reflections on the latest in mobile development and UI/UX design. Stay tuned for articles on Kotlin best practices, Jetpack Compose tutorials, design principles, and more!</p>
-                <p class="text-[--accent-color] font-semibold mt-6">Content coming soon...</p>
-            </div>
-        </section>
+
 
         <!-- Contact Section -->
         <section id="contact" class="max-w-7xl mx-auto py-24 px-8 grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
@@ -660,9 +652,12 @@
             
                 ],
                 description: "This application is designed to make learning English engaging and accessible. It features interactive lessons, pronunciation exercises, and quizzes tailored to different proficiency levels. My focus was on creating a clean, intuitive interface using Jetpack Compose to ensure a smooth and enjoyable user experience. The app also tracks user progress and provides personalized feedback to enhance learning.",
-                tech: ["Kotlin", "Jetpack Compose", "MVVM Architecture", "Room Database", "UI/UX Design"],
+                tech: ["Java", "Room database", "Firebase database", "User data sync", "Fluid UI"],
                 playStoreLink: "https://play.google.com/store/apps/details?id=your.english.app.id",
-                githubLink: "https://github.com/KarimTheCoder/english-teacher-app"
+                githubLink: "https://github.com/KarimTheCoder/english-teacher-app",
+                showPlayStoreLink: true,
+                showGitHubLink: false,
+                showGeminiExpandBtn: false
             },
             "spelling-app": {
                 title: "The Banan(Spelling) App",
@@ -671,7 +666,10 @@
                 description: "An engaging and educational spelling app that helps users perfect their vocabulary effortlessly. It features spaced repetition, adaptive difficulty, and instant feedback. Developed with Kotlin, Jetpack Compose, Persistence Room Database, Material 3 and modern application architecture, it’s optimized for performance and smooth interaction. A sleek, gamified design encourages consistent learning and maximizes user retention.",
                 tech: ["Kotlin", "Jetpack Compose", "MVVM", "Room Database with Foreign Key", "Material 3","Spaced Repetition: Leitner System"],
                 playStoreLink: "",
-                githubLink: "https://github.com/KarimTheCoder/Bangla_Banan"
+                githubLink: "https://github.com/KarimTheCoder/Bangla_Banan",
+                showPlayStoreLink: false,
+                showGitHubLink: true,
+                showGeminiExpandBtn: false
             },
             "project-three": {
                 title: "Idiom Mastery App (Under development)",
@@ -679,15 +677,21 @@
                 description: "Idiom Mastery is a user-friendly app designed to make learning English idioms easy, effective, and engaging. With this app, users can download curated idiom courses and build their skills using a unique learning approach I developed, called Stack Learning with Spaced Repetition (SLSR), which strengthens memory through structured, progressive review. To further enhance retention and understanding, the app also features the Fluid Review System (FRS), an adaptive tool that adjusts to each learner’s progress and helps target weak spots. Whether you're preparing for an exam or looking to speak more naturally, Idiom Mastery offers a focused and flexible way to confidently master everyday idioms.",
                 tech: ["Firebase Database", "Authentication", "Cloud Sync", "Kotlin","Hilt", "MVVM"],
                 playStoreLink: "#",
-                githubLink: "#"
+                githubLink: "#",
+                showPlayStoreLink: false,
+                showGitHubLink: false,
+                showGeminiExpandBtn: false
             },
             "project-four": {
                 title: "Personal Dashboard App",
                 image: "https://placehold.co/600x400/00E676/161b22/png?text=Project+4+Thumbnail",
                 description: "An application designed to help users track personal goals, finances, and habits with a clean, intuitive interface. I focused on user-centered design and a seamless data synchronization process.",
-                tech: ["Kotlin", "Firebase", "Jetpack Compose", "Data Syncing", "UI/UX"],
+                tech: ["Java", "Firebase database", "User authentication", "Data Syncing", "Fluid UI"],
                 playStoreLink: "#",
-                githubLink: "#"
+                githubLink: "#",
+                showPlayStoreLink: true,
+                showGitHubLink: true,
+                showGeminiExpandBtn: true
             }
         };
 
@@ -704,6 +708,9 @@
         const geminiExpandBtn = document.getElementById('geminiExpandBtn');
         const geminiBtnText = document.getElementById('geminiBtnText');
         const geminiLoader = document.getElementById('geminiLoader');
+
+        const modalPlayStoreLink = document.getElementById('modalPlayStoreLink');
+        const modalGitHubLink = document.getElementById('modalGitHubLink');
 
         let currentProjectSlides = [];
         let currentSlideIndex = 0;
@@ -829,6 +836,26 @@
                     modalProjectImage.src = project.image;
                     clearInterval(slideshowInterval); // Ensure slideshow is stopped
                 }
+
+                // Set button visibility based on project data
+                if (project.showPlayStoreLink) {
+                    modalPlayStoreLink.classList.remove('hidden');
+                } else {
+                    modalPlayStoreLink.classList.add('hidden');
+                }
+
+                if (project.showGitHubLink) {
+                    modalGitHubLink.classList.remove('hidden');
+                } else {
+                    modalGitHubLink.classList.add('hidden');
+                }
+
+                if (project.showGeminiExpandBtn) {
+                    geminiExpandBtn.classList.remove('hidden');
+                } else {
+                    geminiExpandBtn.classList.add('hidden');
+                }
+
 
                 // Store the original description for potential re-expansion or reset
                 projectModal.dataset.originalDescription = project.description;
