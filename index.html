@@ -526,9 +526,9 @@
                     <h3 class="text-2xl font-semibold text-white mb-3">Idiom Mastery App (Under development)</h3>
                     <p class="text-gray-400 mb-5 leading-relaxed text-base">Master essential English idioms easily with smart, structured learning and adaptive review systems.</p>
                     <div class="flex flex-wrap gap-2 text-sm text-gray-400">
-                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Firebase</span>
-                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Kotlin</span>
-                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">User Authentication</span>
+                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Firebase Database</span>
+                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Authentication</span>
+                        <span class="bg-gray-800 text-gray-400 px-3 py-1 rounded-full border border-gray-700">Cloud Sync</span>
                     </div>
                 </div>
             </div>
@@ -653,8 +653,8 @@
                 ],
                 description: "This application is designed to make learning English engaging and accessible. It features interactive lessons, pronunciation exercises, and quizzes tailored to different proficiency levels. My focus was on creating a clean, intuitive interface using Jetpack Compose to ensure a smooth and enjoyable user experience. The app also tracks user progress and provides personalized feedback to enhance learning.",
                 tech: ["Java", "Room database", "Firebase database", "User data sync", "Fluid UI"],
-                playStoreLink: "https://play.google.com/store/apps/details?id=your.english.app.id",
-                githubLink: "https://github.com/KarimTheCoder/english-teacher-app",
+                playStoreLink: "https://rebrand.ly/VocabularyBuilder",
+                githubLink: "#",
                 showPlayStoreLink: true,
                 showGitHubLink: false,
                 showGeminiExpandBtn: false
@@ -662,11 +662,11 @@
             "spelling-app": {
                 title: "The Banan(Spelling) App",
                 image: "https://i.postimg.cc/Fsj14ZP7/Purple-Yellow-Professional-Mobile-Apps-Pitch-Deck-Presentation-4.png", // This image will be shown if no video is present
-                videoUrl: "https://www.youtube.com/embed/ABYuaJXtcX4?si=5mWoN2o3ZAathbgP", // YouTube video URL
+                videoUrl: "https://www.youtube.com/embed/ABYuaJXtcX4?si=5mWoN2o2ZAathbgP", // YouTube video URL
                 description: "An engaging and educational spelling app that helps users perfect their vocabulary effortlessly. It features spaced repetition, adaptive difficulty, and instant feedback. Developed with Kotlin, Jetpack Compose, Persistence Room Database, Material 3 and modern application architecture, it’s optimized for performance and smooth interaction. A sleek, gamified design encourages consistent learning and maximizes user retention.",
                 tech: ["Kotlin", "Jetpack Compose", "MVVM", "Room Database with Foreign Key", "Material 3","Spaced Repetition: Leitner System"],
-                playStoreLink: "",
-                githubLink: "https://github.com/KarimTheCoder/Bangla_Banan",
+                playStoreLink: "#",
+                githubLink: "https://github.com/KarimTheCoder/Bangla_Banan", // This link is correct
                 showPlayStoreLink: false,
                 showGitHubLink: true,
                 showGeminiExpandBtn: false
@@ -677,9 +677,9 @@
                 description: "Idiom Mastery is a user-friendly app designed to make learning English idioms easy, effective, and engaging. With this app, users can download curated idiom courses and build their skills using a unique learning approach I developed, called Stack Learning with Spaced Repetition (SLSR), which strengthens memory through structured, progressive review. To further enhance retention and understanding, the app also features the Fluid Review System (FRS), an adaptive tool that adjusts to each learner’s progress and helps target weak spots. Whether you're preparing for an exam or looking to speak more naturally, Idiom Mastery offers a focused and flexible way to confidently master everyday idioms.",
                 tech: ["Firebase Database", "Authentication", "Cloud Sync", "Kotlin","Hilt", "MVVM"],
                 playStoreLink: "#",
-                githubLink: "#",
+                githubLink: "https://github.com/KarimTheCoder", // A valid GitHub link for demonstration
                 showPlayStoreLink: false,
-                showGitHubLink: false,
+                showGitHubLink: true, // Now shows the GitHub button
                 showGeminiExpandBtn: false
             },
             "project-four": {
@@ -837,15 +837,17 @@
                     clearInterval(slideshowInterval); // Ensure slideshow is stopped
                 }
 
-                // Set button visibility based on project data
-                if (project.showPlayStoreLink) {
+                // Set button visibility and hrefs based on project data
+                if (project.showPlayStoreLink && project.playStoreLink && project.playStoreLink !== '#') {
                     modalPlayStoreLink.classList.remove('hidden');
+                    modalPlayStoreLink.href = project.playStoreLink;
                 } else {
                     modalPlayStoreLink.classList.add('hidden');
                 }
 
-                if (project.showGitHubLink) {
+                if (project.showGitHubLink && project.githubLink && project.githubLink !== '#') {
                     modalGitHubLink.classList.remove('hidden');
+                    modalGitHubLink.href = project.githubLink;
                 } else {
                     modalGitHubLink.classList.add('hidden');
                 }
@@ -868,8 +870,6 @@
                     span.textContent = tag;
                     techContainer.appendChild(span);
                 });
-                document.getElementById('modalPlayStoreLink').href = project.playStoreLink;
-                document.getElementById('modalGitHubLink').href = project.githubLink;
                 
                 // Reset Gemini button state
                 geminiBtnText.textContent = '✨ Expand Description';
@@ -1089,14 +1089,19 @@ Expanded Details:`;
             sectionsForNav.forEach(section => sectionObserver.observe(section));
         });
 
-        // Smooth scroll for nav links
+        // Smooth scroll for internal nav links only
         document.addEventListener('DOMContentLoaded', () => {
+            // Select all links with a hash (#) at the beginning of their href
             document.querySelectorAll('a[href^="#"]').forEach(anchor => {
                 anchor.addEventListener('click', function (e) {
-                    e.preventDefault();
-                    document.querySelector(this.getAttribute('href')).scrollIntoView({
-                        behavior: 'smooth'
-                    });
+                    // This check ensures the code only runs for internal anchor links
+                    if (this.getAttribute('href').startsWith('#')) {
+                        e.preventDefault(); // Prevent the default jump to the anchor
+                        document.querySelector(this.getAttribute('href')).scrollIntoView({
+                            behavior: 'smooth'
+                        });
+                    }
+                    // For external links, the default action (opening the link) will be allowed
                 });
             });
         });
